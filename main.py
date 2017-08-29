@@ -1,3 +1,12 @@
+from game_map import import_map_from_file as create_map
+from game_map import print_map
+
+
+def main():
+    print_map(create_map('example_level.txt'))
+    # start_screen()
+
+
 def play_screen():
     print("Play a game")
 
@@ -23,7 +32,6 @@ def exit_game():
 
 
 def start_screen():
-
     while True:
         decision = input("Enter P or H or L or E")
         if decision.lower() == ("P").lower():
@@ -39,10 +47,6 @@ def start_screen():
             exit_game()
         else:
             print("You can select only P or H or L")
-
-
-def main():
-    start_screen()
 
 
 if __name__ == '__main__':
