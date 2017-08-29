@@ -42,7 +42,7 @@ def import_map_from_file(filename):
         for line in file:
             row = list(line.replace('\n', ''))
             for i in range(len(row)):
-                game_map[i][line_count].terrain = determine_tile_type(row[i])
+                game_map[i][line_count].tile = determine_tile_type(row[i])
             line_count += 1
     return game_map
 
@@ -52,5 +52,12 @@ def print_map(game_map):
     for i in range(len(game_map[0])):
         row.append([])
         for j in range(len(game_map)):
-            row[i].append(game_map[j][i].terrain.value)
+            row[i].append(game_map[j][i].tile.value)
         print(''.join(row[i]))
+
+
+def search_for_player(game_map):
+    for column in game_map:
+        for cell in column:
+            if cell.tile == Tile.PLAYER:
+                return [cell.x, cell.y]
