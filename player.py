@@ -8,12 +8,14 @@ class PlayerType:
 
 
 class Player:
-    def __init__(self, x, y, health, strength, force):
+    def __init__(self, x, y, health, strength, force, to_hit, defense):
         self.x = x
         self.y = y
         self.health = health
         self.strength = strength
         self.force = force
+        self.to_hit = to_hit
+        self.defense = defense
         self.inventory = []
 
 
@@ -53,6 +55,8 @@ def action_of_player(game_map, player):
             game_map[player.x][player.y].tile = Tile.EMPTY
             player.x += 1
             player_finished_turn = True
+    elif input_moving == 'P':
+        player_finished_turn = True
     elif input_moving == 'I':
         print_inventory(player.inventory)
         # while True:
