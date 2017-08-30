@@ -1,53 +1,51 @@
 from random import randint
 
 
-class Item:
-    def __init__(self, weight, rarity):
-        self.weight = weight
-        self.rarity = rarity
-
-
-class Weapon(Item):
+class Weapon:
     CHAIR = 'Chair'
     MOUSE = 'Mouse'
     TABLE = 'Table'
 
     def __init__(self, weight, rarity, damage, hit_rate, weapon_type):
-        super().__init__(weight, rarity)
+        self.weight = weight
+        self.rarity = rarity
         self.damage = damage
         self.hit_rate = hit_rate
         self.weapon_type = weapon_type
 
 
-class Armor(Item):
+class Armor:
     JACKET = 'Jacket'
     TSHIRT = 'T-shirt'
     SWEATSHIRT = 'Sweatshirt'
 
     def __init__(self, weight, rarity, defense, hit_points, armor_type):
-        super().__init__(weight, rarity)
+        self.weight = weight
+        self.rarity = rarity
         self.defense = defense
         self.hit_points = hit_points
         self.armor_type = armor_type
 
 
-class Pants(Item):
+class Pants:
     SKIRT = 'Skirt'
     JEANS = 'Jeans'
     SHORTS = 'Shorts'
 
     def __init__(self, weight, rarity, defense, pants_type):
-        super().__init__(weight, rarity)
+        self.weight = weight
+        self.rarity = rarity
         self.defense = defense
         self.pants_type = pants_type
 
 
-class Food(Item):
+class Food:
     DONUT = 'Donut'
     COFFEE = 'Coffee'
 
     def __init__(self, weight, rarity, heal_amount, food_type):
-        super().__init__(weight, rarity)
+        self.weight = weight
+        self.rarity = rarity
         self.heal_amount = heal_amount
         self.food_type = food_type
 
