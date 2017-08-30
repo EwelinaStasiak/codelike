@@ -1,6 +1,19 @@
 from game_map import *
 
 
+class PlayerType:
+    A = 0
+    B = 1
+
+
+class Player:
+    def __init__(self, health, strength, force):
+        self.health = health
+        self.strength = strength
+        self.force = force
+
+
+
 def getch():
     import sys, tty, termios
     fd = sys.stdin.fileno()
