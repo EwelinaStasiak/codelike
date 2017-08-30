@@ -6,8 +6,8 @@ class Tile(Enum):
     WALL = '#'
     EMPTY = '.'
     PLAYER = '@'
-    MONSTER = 'A'
-    MONSTER2 = 'B'
+    RAGING_NERD = 'A'
+    SYSOP = 'B'
 
 
 class Cell:
@@ -34,10 +34,10 @@ def determine_tile_type(character):
         return Tile.EMPTY
     elif character == Tile.PLAYER.value:
         return Tile.PLAYER
-    elif character == Tile.MONSTER.value:
-        return Tile.MONSTER
-    elif character == Tile.MONSTER2.value:
-        return Tile.MONSTER2
+    elif character == Tile.RAGING_NERD.value:
+        return Tile.RAGING_NERD
+    elif character == Tile.SYSOP.value:
+        return Tile.SYSOP
     else:
         return Tile.EMPTY
 
@@ -57,9 +57,9 @@ def import_map_from_file(filename):
 def color_tile(tile):
     if tile == Tile.PLAYER:
         return '\x1b[1;33;40m' + tile.value + '\x1b[0m'
-    if tile == Tile.MONSTER:
+    if tile == Tile.RAGING_NERD:
         return '\x1b[1;31;40m' + tile.value + '\x1b[0m'
-    if tile == Tile.MONSTER2:
+    if tile == Tile.SYSOP:
         return '\x1b[1;31;40m' + tile.value + '\x1b[0m'
     if tile == Tile.EMPTY:
         return '\x1b[0;35;40m' + tile.value + '\x1b[0m'
