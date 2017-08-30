@@ -150,5 +150,3 @@ def create_item(rarity):
         return create_equipment(rarity)
     else:
         return create_consumable(rarity)
-
-

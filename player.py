@@ -1,19 +1,20 @@
 from game_map import *
 from inventory import *
 
+
 class PlayerType:
     A = 0
     B = 1
 
 
 class Player:
-    def __init__(self, x, y, health, strength, force, inventory):
+    def __init__(self, x, y, health, strength, force):
         self.x = x
         self.y = y
         self.health = health
         self.strength = strength
         self.force = force
-        self.inventory = inventory
+        self.inventory = []
 
 
 def getch():
@@ -52,6 +53,4 @@ def action_player(game_map, player):
         while True:
             use_item(inventory)
 
-
     game_map[player.x][player.y].tile = Tile.PLAYER
-
