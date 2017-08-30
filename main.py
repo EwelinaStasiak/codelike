@@ -1,7 +1,7 @@
 from game_map import import_map_from_file as create_map
 from game_map import print_map
 from game_map import search_for_player
-from player import action_player, Player
+from player import action_of_player, Player
 from monster import create_monsters, move_monsters
 
 
@@ -13,7 +13,7 @@ def main():
     # start_screen()
     print_map(game_map)
     while True:
-        if action_player(game_map, player):
+        if action_of_player(game_map, player):
             move_monsters(game_map, monsters, player)
         print_map(game_map)
 

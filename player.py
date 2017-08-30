@@ -29,7 +29,7 @@ def getch():
     return ch
 
 
-def action_player(game_map, player):
+def action_of_player(game_map, player):
     print('Press W(up), S(down), A(left), D(right)')
     player_finished_turn = False
     input_moving = getch().upper()
