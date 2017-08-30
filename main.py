@@ -1,30 +1,23 @@
 from game_map import import_map_from_file as create_map
 from game_map import print_map
 from game_map import search_for_player
-from items import create_item
-from player import action_player, Player
-from monster import create_monsters
+from player import moving_player, Player
+from monster import create_monsters, move_monsters
+
 
 
 def main():
     game_map = create_map('example_level.txt')
-
-    monsters = create_monsters
+    monsters = create_monsters(game_map)
     player_location = search_for_player(game_map)
-    inventory = [create_item(2)]
     player = Player(player_location[0], player_location[1], 40, 10, 10, inventory)
-
     # start_screen()
+    print_map(game_map)
     while True:
+
         action_player(game_map, player)
-        # move_monsters(game_map, monsters)
+        move_monsters(game_map, monsters, player)
         print_map(game_map)
-
-
-#   file = open(file_name, 'r')
- #   file.readlines()
-  #  file.close()
-   # return file
 
 
 def play_screen():
