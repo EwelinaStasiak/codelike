@@ -30,11 +30,11 @@ class Monster:
         pass
 
     def move(self, game_map):
-        directions = [[0, 1], [0, -1], [1, 0], [-1, 0]]
+        directions = [[0, 1], [0, -1], [1, 0], [-1, 0], [0, 0]]
         for i in range(4):
             direction = directions.pop(randint(0, len(directions) - 1))
             tile = game_map[self.x + direction[0]][self.y + direction[1]].tile
-            if tile != Tile.WALL and tile != Tile.PLAYER:
+            if tile == Tile.EMPTY or (direction[0] == 0 and direction[1] == 0):
                 game_map[self.x][self.y].tile = Tile.EMPTY
                 self.x += direction[0]
                 self.y += direction[1]
@@ -43,13 +43,13 @@ class Monster:
 
 
 def check_if_player_is_nearby(game_map, monster_x, monster_y):
-    if game_map[monster_x][monster_y - 1] == Tile.PLAYER:
+    if game_map[monster_x][monster_y - 1].tile == Tile.PLAYER:
         return True
-    elif game_map[monster_x][monster_y + 1] == Tile.PLAYER:
+    elif game_map[monster_x][monster_y + 1].tile == Tile.PLAYER:
         return True
-    elif game_map[monster_x - 1][monster_y] == Tile.PLAYER:
+    elif game_map[monster_x - 1][monster_y].tile == Tile.PLAYER:
         return True
-    elif game_map[monster_x + 1][monster_y] == Tile.PLAYER:
+    elif game_map[monster_x + 1][monster_y].tile == Tile.PLAYER:
         return True
     return False
 
