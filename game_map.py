@@ -54,13 +54,26 @@ def import_map_from_file(filename):
     return game_map
 
 
+def color_tile(tile):
+    if tile == Tile.PLAYER:
+        return '\x1b[1;33;40m' + tile.value + '\x1b[0m'
+    if tile == Tile.MONSTER:
+        return '\x1b[1;31;40m' + tile.value + '\x1b[0m'
+    if tile == Tile.MONSTER2:
+        return '\x1b[1;31;40m' + tile.value + '\x1b[0m'
+    if tile == Tile.EMPTY:
+        return '\x1b[0;35;40m' + tile.value + '\x1b[0m'
+    if tile == Tile.WALL:
+        return '\x1b[0;34;40m' + tile.value + '\x1b[0m'
+
+
 def print_map(game_map):
     os.system('cls' if os.name == 'nt' else 'clear')
     row = []
     for i in range(len(game_map[0])):
         row.append([])
         for j in range(len(game_map)):
-            row[i].append(game_map[j][i].tile.value)
+            row[i].append(color_tile(game_map[j][i].tile))
         print(''.join(row[i]))
 
 
