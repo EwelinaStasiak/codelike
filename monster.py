@@ -1,5 +1,6 @@
 from random import randint
 
+from fight import deal_damage, test_for_hit, end_game
 from game_map import Tile
 
 
@@ -27,7 +28,14 @@ class Monster:
             self.tile_type = Tile.SYSOP
 
     def attack(self, player):
-        pass
+        if test_for_hit(self.to_hit, player.to_hit):
+            dealt_damage = deal_damage(self.damage, player.defense)
+            print('{} attacked with roundhouse kick. You have lost {} health.'.format(self.monster_type, dealt_damage))
+            player.health -= dealt_damage
+            if player.health <= 0:
+                end_game()
+        else:
+            print('{} missed.'.format(self.monster_type))
 
     def move(self, game_map):
         directions = [[0, 1], [0, -1], [1, 0], [-1, 0], [0, 0]]
