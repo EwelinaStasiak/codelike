@@ -1,13 +1,14 @@
 from game_map import import_map_from_file as create_map
 from game_map import print_map
 from game_map import search_for_player
-
+from player import moving_player
 
 def main():
     game_map = create_map('example_level.txt')
     print_map(game_map)
     player_location = search_for_player(game_map)
     print(player_location)
+    moving_player(game_map, player_location)
     # start_screen()
 
 
