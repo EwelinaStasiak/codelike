@@ -1,5 +1,5 @@
 from game_map import *
-
+from inventory import *
 
 class PlayerType:
     A = 0
@@ -48,6 +48,5 @@ def moving_player(game_map, player_location):
             if game_map[player_x + 1][player_y].tile != Tile.WALL:
                 game_map[player_x][player_y].tile = Tile.EMPTY
                 player_x += 1
-
         game_map[player_x][player_y].tile = Tile.PLAYER
         print_map(game_map)
