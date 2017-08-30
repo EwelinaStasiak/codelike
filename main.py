@@ -1,22 +1,23 @@
 from game_map import import_map_from_file as create_map
 from game_map import print_map
 from game_map import search_for_player
-from player import moving_player
+from player import moving_player, Player
 from monster import create_monsters
 
 
 def main():
-
     game_map = create_map('example_level.txt')
-    print_map(game_map)
-    player_location = search_for_player(game_map)
     monsters = create_monsters
-    moving_player(game_map, player_location)
+    player_location = search_for_player(game_map)
+    player = Player(player_location[0], player_location[1], 40, 10, 10)
     # start_screen()
+    while True:
+        moving_player(game_map, player)
+        # move_monsters(game_map, monsters)
+        print_map(game_map)
 
 
 def open_file(file_name):
-
     file = open(file_name, 'r')
     file.readlines()
     file.close()
@@ -25,7 +26,6 @@ def open_file(file_name):
 
 def play_screen():
     print('Play a game')
-
 
 
 def help_screen():
