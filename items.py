@@ -8,9 +8,9 @@ class Item:
 
 
 class Weapon(Item):
-    CHAIR = 0
-    MOUSE = 1
-    TABLE = 2
+    CHAIR = 'Chair'
+    MOUSE = 'Mouse'
+    TABLE = 'Table'
 
     def __init__(self, weight, rarity, damage, hit_rate, weapon_type):
         super().__init__(weight, rarity)
@@ -20,9 +20,9 @@ class Weapon(Item):
 
 
 class Armor(Item):
-    JACKET = 0
-    TSHIRT = 1
-    SWEATSHIRT = 2
+    JACKET = 'Jacket'
+    TSHIRT = 'T-shirt'
+    SWEATSHIRT = 'Sweatshirt'
 
     def __init__(self, weight, rarity, defense, hit_points, armor_type):
         super().__init__(weight, rarity)
@@ -32,9 +32,9 @@ class Armor(Item):
 
 
 class Pants(Item):
-    SKIRT = 0
-    JEANS = 1
-    SHORTS = 2
+    SKIRT = 'Skirt'
+    JEANS = 'Jeans'
+    SHORTS = 'Shorts'
 
     def __init__(self, weight, rarity, defense, pants_type):
         super().__init__(weight, rarity)
@@ -43,8 +43,8 @@ class Pants(Item):
 
 
 class Food(Item):
-    DONUT = 0
-    COFFEE = 1
+    DONUT = 'Donut'
+    COFFEE = 'Coffee'
 
     def __init__(self, weight, rarity, heal_amount, food_type):
         super().__init__(weight, rarity)
