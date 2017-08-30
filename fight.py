@@ -18,7 +18,7 @@ def deal_damage(damage, defense):
     if total_damage - defense < 1:
         return 1
     else:
-        return total_damage
+        return total_damage - defense
 
 
 def end_game():
