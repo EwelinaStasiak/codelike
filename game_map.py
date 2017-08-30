@@ -6,6 +6,8 @@ class Tile(Enum):
     WALL = '#'
     EMPTY = '.'
     PLAYER = '@'
+    MONSTER = 'A'
+    MONSTER2 = 'B'
 
 
 class Cell:
@@ -32,6 +34,10 @@ def determine_tile_type(character):
         return Tile.EMPTY
     elif character == Tile.PLAYER.value:
         return Tile.PLAYER
+    elif character == Tile.MONSTER.value:
+        return Tile.MONSTER
+    elif character == Tile.MONSTER2.value:
+        return Tile.MONSTER2
     else:
         return Tile.EMPTY
 
