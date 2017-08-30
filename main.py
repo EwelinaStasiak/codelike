@@ -3,7 +3,9 @@ from game_map import print_map
 from game_map import search_for_player
 from player import moving_player
 
+
 def main():
+
     game_map = create_map('example_level.txt')
     print_map(game_map)
     player_location = search_for_player(game_map)
@@ -12,8 +14,16 @@ def main():
     # start_screen()
 
 
+def open_file(file_name):
+
+    file = open(file_name, 'r')
+    file.readlines()
+    file.close()
+    return file
+
+
 def play_screen():
-    print("Play a game")
+        print("Play a game")
 
 
 def help_screen():
@@ -37,6 +47,8 @@ def exit_game():
 
 
 def start_screen():
+    print(open_file("StartScreen.txt"))
+
     while True:
         decision = input("Enter P or H or L or E")
         if decision.lower() == ("P").lower():
