@@ -13,8 +13,8 @@ def main():
     # start_screen()
     print_map(game_map)
     while True:
-        action_player(game_map, player)
-        move_monsters(game_map, monsters, player)
+        if action_player(game_map, player):
+            move_monsters(game_map, monsters, player)
         print_map(game_map)
 
 

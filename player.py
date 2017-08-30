@@ -31,26 +31,32 @@ def getch():
 
 def action_player(game_map, player):
     print('Press W(up), S(down), A(left), D(right)')
+    player_finished_turn = False
     input_moving = getch().upper()
     if input_moving == 'W':
-        if game_map[player.x][player.y - 1].tile != Tile.WALL:
+        if game_map[player.x][player.y - 1].tile == Tile.EMPTY:
             game_map[player.x][player.y].tile = Tile.EMPTY
             player.y -= 1
+            player_finished_turn = True
     elif input_moving == 'S':
-        if game_map[player.x][player.y + 1].tile != Tile.WALL:
+        if game_map[player.x][player.y + 1].tile == Tile.EMPTY:
             game_map[player.x][player.y].tile = Tile.EMPTY
             player.y += 1
+            player_finished_turn = True
     elif input_moving == 'A':
-        if game_map[player.x - 1][player.y].tile != Tile.WALL:
+        if game_map[player.x - 1][player.y].tile == Tile.EMPTY:
             game_map[player.x][player.y].tile = Tile.EMPTY
             player.x -= 1
+            player_finished_turn = True
     elif input_moving == 'D':
-        if game_map[player.x + 1][player.y].tile != Tile.WALL:
+        if game_map[player.x + 1][player.y].tile == Tile.EMPTY:
             game_map[player.x][player.y].tile = Tile.EMPTY
             player.x += 1
+            player_finished_turn = True
     elif input_moving == 'I':
         print_inventory(player.inventory)
-        while True:
-            use_item(inventory)
+        # while True:
+        #     use_item(inventory)
 
     game_map[player.x][player.y].tile = Tile.PLAYER
+    return player_finished_turn
