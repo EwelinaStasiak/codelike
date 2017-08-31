@@ -74,7 +74,7 @@ def help_screen():
 
 
 def lose_screen():
-    pass
+    open_file('lose_screen.txt')
 
 
 def win_screen():
