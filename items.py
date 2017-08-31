@@ -6,10 +6,10 @@ class Weapon:
     MOUSE = 'Mouse'
     TABLE = 'Table'
 
-    def __init__(self, weight, damage, hit_rate, item_type):
+    def __init__(self, weight, damage, agility, item_type):
         self.weight = weight
         self.damage = damage
-        self.hit_rate = hit_rate
+        self.agility = agility
         self.item_type = item_type
         self.equipped = False
 
@@ -63,22 +63,22 @@ def rarity_bonus(rarity, chance_for_bonus):
 def create_weapon(rarity):
     r = randint(1, 99)
     damage_bonus = rarity_bonus(rarity, 35)
-    hit_rate_bonus = rarity_bonus(rarity, 50)
+    agility_bonus = rarity_bonus(rarity, 50)
     if r <= 33:
         weight = 2
         damage = 2 + damage_bonus
-        hit_rate = 5 + hit_rate_bonus
-        return Weapon(weight, damage, hit_rate, Weapon.MOUSE)
+        agility = 5 + agility_bonus
+        return Weapon(weight, damage, agility, Weapon.MOUSE)
     elif 33 < r <= 66:
         weight = 4
         damage = 3 + damage_bonus
-        hit_rate = 4 + hit_rate_bonus
-        return Weapon(weight, damage, hit_rate, Weapon.CHAIR)
+        agility = 4 + agility_bonus
+        return Weapon(weight, damage, agility, Weapon.CHAIR)
     else:
         weight = 7
         damage = 6 + damage_bonus
-        hit_rate = 2 + hit_rate_bonus
-        return Weapon(weight, damage, hit_rate, Weapon.TABLE)
+        agility = 2 + agility_bonus
+        return Weapon(weight, damage, agility, Weapon.TABLE)
 
 
 def create_armor(rarity):
