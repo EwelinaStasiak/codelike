@@ -12,7 +12,7 @@ class Player:
         self.type_hero = type_hero
         self.x = x
         self.y = y
-        self.inventory = [Weapon(2, 2, 2, 2, Weapon.CHAIR)]
+        self.inventory = [create_item(2), create_item(1), create_item(2), create_item(1), create_item(2), create_item(1), create_item(2), create_item(1), create_item(2), create_item(1), create_item(2), create_item(1), create_item(2), create_item(1)]
 
         if type_hero == Player.ZDZISLAW:
             self.health = 50
@@ -66,8 +66,15 @@ def check_input(player_input, game_map, player, messages):
     elif player_input == 'P':
         return True
     elif player_input == 'I':
-        print_inventory(player.inventory, messages)
-
+        while True:
+            print_inventory(player.inventory, messages)
+            decision = input('Use item press U, Delete item press D, Exit press E').upper()
+            if decision == 'U':
+                use_item(player)
+            elif decision == 'D':
+                pass
+            elif decision == 'E':
+                break
     if valid_input:
         tile = game_map[new_x][new_y].tile
         if tile == Cell.EMPTY or tile == Cell.RAGING_NERD or tile == Cell.SYSOP or tile == Cell.STAIRS:
