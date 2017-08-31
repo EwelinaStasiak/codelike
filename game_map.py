@@ -4,6 +4,22 @@ class Cell:
     PLAYER = '@'
     RAGING_NERD = 'A'
     SYSOP = 'B'
+    BOOS_1 = '\''
+    BOOS_2 = '-'
+    BOOS_3 = '('
+    BOOS_4 = ')'
+    BOOS_5 = ' '
+    BOOS_6 = '_'
+    BOOS_7 = '|'
+    BOOS_8 = '\\'
+    BOOS_9 = '/'
+    BOOS_10 = 'p'
+    BOOS_11 = 'a'
+    BOOS_12 = 's'
+    BOOS_13 = 'w'
+    BOOS_14 = 'o'
+    BOOS_15 = 'r'
+    BOOS_16 = 'd'
 
     def __init__(self, x, y, tile):
         self.x = x
@@ -32,6 +48,38 @@ def determine_tile_type(character):
         return Cell.RAGING_NERD
     elif character == Cell.SYSOP:
         return Cell.SYSOP
+    elif character == Cell.BOOS_1:
+        return Cell.BOOS_1
+    elif character == Cell.BOOS_2:
+        return Cell.BOOS_2
+    elif character == Cell.BOOS_3:
+        return Cell.BOOS_3
+    elif character == Cell.BOOS_4:
+        return Cell.BOOS_4
+    elif character == Cell.BOOS_5:
+        return Cell.BOOS_5
+    elif character == Cell.BOOS_6:
+        return Cell.BOOS_6
+    elif character == Cell.BOOS_7:
+        return Cell.BOOS_7
+    elif character == Cell.BOOS_8:
+        return Cell.BOOS_8
+    elif character == Cell.BOOS_9:
+        return Cell.BOOS_9
+    elif character == Cell.BOOS_10:
+        return Cell.BOOS_10
+    elif character == Cell.BOOS_11:
+        return Cell.BOOS_11
+    elif character == Cell.BOOS_12:
+        return Cell.BOOS_12
+    elif character == Cell.BOOS_13:
+        return Cell.BOOS_13
+    elif character == Cell.BOOS_14:
+        return Cell.BOOS_14
+    elif character == Cell.BOOS_15:
+        return Cell.BOOS_15
+    elif character == Cell.BOOS_16:
+        return Cell.BOOS_16
     else:
         return Cell.EMPTY
 
