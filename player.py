@@ -12,7 +12,7 @@ class Player:
         self.type_hero = type_hero
         self.x = x
         self.y = y
-        self.inventory = []
+        self.inventory = [Weapon(2, 2, 2, 2, Weapon.CHAIR)]
 
         if type_hero == Player.ZDZISLAW:
             self.health = 50
@@ -70,34 +70,46 @@ def check_input(player_input, game_map, player, messages):
 
     if valid_input:
         tile = game_map[new_x][new_y].tile
-        if tile == Cell.EMPTY or tile == Cell.RAGING_NERD or tile == Cell.SYSOP:
+        if tile == Cell.EMPTY or tile == Cell.RAGING_NERD or tile == Cell.SYSOP or tile == Cell.STAIRS:
             return True
     return False
 
 
-def determine_action_type(player, new_x, new_y, game_map, monsters, messages):
+def determine_action_type(player, new_x, new_y, game_map, monsters, messages, move_to_next_level):
     if game_map[new_x][new_y].tile == Cell.EMPTY:
         game_map[player.x][player.y].tile = Cell.EMPTY
         player.x = new_x
         player.y = new_y
         game_map[player.x][player.y].tile = Cell.PLAYER
         return True
-    if game_map[new_x][new_y].tile == Cell.RAGING_NERD or game_map[new_x][new_y].tile == Cell.SYSOP:
+    elif game_map[new_x][new_y].tile == Cell.RAGING_NERD or game_map[new_x][new_y].tile == Cell.SYSOP:
         monster = search_for_monster(monsters, new_x, new_y)
         player.attack(monsters, monster, messages, game_map)
         return True
+    elif game_map[new_x][new_y].tile == Cell.STAIRS:
+        if monsters:
+            messages.append('You need to kill all monsters to use the stairs.')
+            return False
+        else:
+            move_to_next_level.append(True)
+            messages.append('You moved to the next level')
+            return True
 
 
-def action_of_player(player_input, game_map, player, monsters, messages):
+def action_of_player(player_input, game_map, player, monsters, messages, move_to_next_level):
     player_finished_turn = False
     if player_input == 'W':
-        player_finished_turn = determine_action_type(player, player.x, player.y - 1, game_map, monsters, messages)
+        player_finished_turn = determine_action_type(player, player.x, player.y - 1, game_map, monsters, messages,
+                                                     move_to_next_level)
     elif player_input == 'S':
-        player_finished_turn = determine_action_type(player, player.x, player.y + 1, game_map, monsters, messages)
+        player_finished_turn = determine_action_type(player, player.x, player.y + 1, game_map, monsters, messages,
+                                                     move_to_next_level)
     elif player_input == 'A':
-        player_finished_turn = determine_action_type(player, player.x - 1, player.y, game_map, monsters, messages)
+        player_finished_turn = determine_action_type(player, player.x - 1, player.y, game_map, monsters, messages,
+                                                     move_to_next_level)
     elif player_input == 'D':
-        player_finished_turn = determine_action_type(player, player.x + 1, player.y, game_map, monsters, messages)
+        player_finished_turn = determine_action_type(player, player.x + 1, player.y, game_map, monsters, messages,
+                                                     move_to_next_level)
     elif player_input == 'P':
         player_finished_turn = True
 
