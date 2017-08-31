@@ -6,12 +6,12 @@ class Weapon:
     MOUSE = 'Mouse'
     TABLE = 'Table'
 
-    def __init__(self, weight, rarity, damage, hit_rate, weapon_type):
+    def __init__(self, weight, rarity, damage, hit_rate, item_type):
         self.weight = weight
         self.rarity = rarity
         self.damage = damage
         self.hit_rate = hit_rate
-        self.weapon_type = weapon_type
+        self.item_type = item_type
 
 
 class Armor:
@@ -19,12 +19,12 @@ class Armor:
     TSHIRT = 'T-shirt'
     SWEATSHIRT = 'Sweatshirt'
 
-    def __init__(self, weight, rarity, defense, hit_points, armor_type):
+    def __init__(self, weight, rarity, defense, hit_points, item_type):
         self.weight = weight
         self.rarity = rarity
         self.defense = defense
         self.hit_points = hit_points
-        self.armor_type = armor_type
+        self.item_type = item_type
 
 
 class Pants:
@@ -32,22 +32,22 @@ class Pants:
     JEANS = 'Jeans'
     SHORTS = 'Shorts'
 
-    def __init__(self, weight, rarity, defense, pants_type):
+    def __init__(self, weight, rarity, defense, item_type):
         self.weight = weight
         self.rarity = rarity
         self.defense = defense
-        self.pants_type = pants_type
+        self.item_type = item_type
 
 
 class Food:
     DONUT = 'Donut'
     COFFEE = 'Coffee'
 
-    def __init__(self, weight, rarity, heal_amount, food_type):
+    def __init__(self, weight, rarity, heal_amount, item_type):
         self.weight = weight
         self.rarity = rarity
         self.heal_amount = heal_amount
-        self.food_type = food_type
+        self.item_type = item_type
 
     def use(self):
         pass

@@ -3,9 +3,11 @@ from game_map import print_map
 from game_map import search_for_player
 from player import action_of_player, Player
 from monster import create_monsters, move_monsters
-
+from screens import open_file
 
 def main():
+    start_screen()
+
     game_map = create_map('example_level.txt')
     monsters = create_monsters(game_map)
     player_location = search_for_player(game_map)
@@ -31,7 +33,7 @@ def lose_screen():
 
 
 def win_screen():
-    pass
+    print(open_file('win_screen.txt'))
 
 
 def hall_of_fame_screen():
@@ -43,6 +45,7 @@ def exit_game():
 
 
 def start_screen():
+    print(open_file('StartScreen.txt'))
     while True:
         decision = input('Enter P or H or L or E').lower()
         if decision == 'p':
