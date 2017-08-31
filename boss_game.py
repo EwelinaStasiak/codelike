@@ -39,7 +39,7 @@ def play_a_hot_game(player):
     player_guesses = 10
     print('Guesses: ', player_guesses)
     correct_answer = generate_boss_number()
-    print(correct_answer)
+    # print(correct_answer)
     while player_guesses > 0:
         player_input = get_player_input()
         answer = compare_user_answer(player_input, correct_answer)
