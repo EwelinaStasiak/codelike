@@ -1,9 +1,12 @@
+import os
+
 from game_map import import_map_from_file as create_map
 from game_map import print_map
 from game_map import search_for_player
 from player import action_of_player, Player
-from monster import create_monsters, move_monsters
+from monster import create_monsters, move_monsters, monsters_attack
 from screens import open_file
+
 
 def main():
     start_screen()
@@ -12,12 +15,13 @@ def main():
     monsters = create_monsters(game_map)
     player_location = search_for_player(game_map)
     player = Player(player_location[0], player_location[1], 40, 10, 10, 5, 5)
-    # start_screen()
     print_map(game_map)
     while True:
         if action_of_player(game_map, player):
-            move_monsters(game_map, monsters, player)
-        print_map(game_map)
+            os.system('cls' if os.name == 'nt' else 'clear')
+            move_monsters(game_map, monsters)
+            print_map(game_map)
+            monsters_attack(game_map, monsters, player)
 
 
 def play_screen():
