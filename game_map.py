@@ -39,57 +39,6 @@ def create_empty_map(width=50, height=20):
     return game_map
 
 
-def determine_tile_type(character):
-    if character == Cell.WALL:
-        return Cell.WALL
-    elif character == Cell.EMPTY:
-        return Cell.EMPTY
-    elif character == Cell.PLAYER:
-        return Cell.PLAYER
-    elif character == Cell.RAGING_NERD:
-        return Cell.RAGING_NERD
-    elif character == Cell.SYSOP:
-        return Cell.SYSOP
-    elif character == Cell.STAIRS:
-        return Cell.STAIRS
-    elif character == Cell.BOSS_1:
-        return Cell.BOSS_1
-    elif character == Cell.BOSS_2:
-        return Cell.BOSS_2
-    elif character == Cell.BOSS_3:
-        return Cell.BOSS_3
-    elif character == Cell.BOSS_4:
-        return Cell.BOSS_4
-    elif character == Cell.BOSS_5:
-        return Cell.BOSS_5
-    elif character == Cell.BOSS_6:
-        return Cell.BOSS_6
-    elif character == Cell.BOSS_7:
-        return Cell.BOSS_7
-    elif character == Cell.BOSS_8:
-        return Cell.BOSS_8
-    elif character == Cell.BOSS_9:
-        return Cell.BOSS_9
-    elif character == Cell.BOSS_10:
-        return Cell.BOSS_10
-    elif character == Cell.BOSS_11:
-        return Cell.BOSS_11
-    elif character == Cell.BOSS_12:
-        return Cell.BOSS_12
-    elif character == Cell.BOSS_13:
-        return Cell.BOSS_13
-    elif character == Cell.BOSS_14:
-        return Cell.BOSS_14
-    elif character == Cell.BOSS_15:
-        return Cell.BOSS_15
-    elif character == Cell.BOSS_16:
-        return Cell.BOSS_16
-    elif character == Cell.HOT_GAME:
-        return Cell.HOT_GAME
-    else:
-        return Cell.EMPTY
-
-
 def import_map_from_file(filename):
     game_map = create_empty_map()
     with open(filename, 'r') as file:
@@ -97,7 +46,7 @@ def import_map_from_file(filename):
         for line in file:
             row = list(line.replace('\n', ''))
             for i in range(len(row)):
-                game_map[i][line_count].tile = determine_tile_type(row[i])
+                game_map[i][line_count].tile = row[i]
             line_count += 1
     return game_map
 
