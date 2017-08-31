@@ -21,6 +21,7 @@ class Cell:
     BOOS_14 = 'o'
     BOOS_15 = 'r'
     BOOS_16 = 'd'
+    BOOS_17 = '*'
 
     def __init__(self, x, y, tile):
         self.x = x
@@ -83,6 +84,8 @@ def determine_tile_type(character):
         return Cell.BOOS_15
     elif character == Cell.BOOS_16:
         return Cell.BOOS_16
+    elif character == Cell.BOOS_17:
+        return Cell.BOOS_17
     else:
         return Cell.EMPTY
 
@@ -114,6 +117,40 @@ def color_tile(tile):
         return '\x1b[0;36;40m' + tile + '\x1b[0m'
     else:
         return '\x1b[4;34;40m' + tile + '\x1b[0m'
+    if tile == Cell.BOOS_1:
+        return '\x1b[1;33;40m' + tile + '\x1b[0m'
+    if tile == Cell.BOOS_2:
+        return '\x1b[1;33;40m' + tile + '\x1b[0m'
+    if tile == Cell.BOOS_3:
+        return '\x1b[1;33;40m' + tile + '\x1b[0m'
+    if tile == Cell.BOOS_4:
+        return '\x1b[1;33;40m' + tile + '\x1b[0m'
+    if tile == Cell.BOOS_5:
+        return '\x1b[1;33;40m' + tile + '\x1b[0m'
+    if tile == Cell.BOOS_6:
+        return '\x1b[1;33;40m' + tile + '\x1b[0m'
+    if tile == Cell.BOOS_7:
+        return '\x1b[1;33;40m' + tile + '\x1b[0m'
+    if tile == Cell.BOOS_8:
+        return '\x1b[1;33;40m' + tile + '\x1b[0m'
+    if tile == Cell.BOOS_9:
+        return '\x1b[1;33;40m' + tile + '\x1b[0m'
+    if tile == Cell.BOOS_10:
+        return '\x1b[1;32;40m' + tile + '\x1b[0m'
+    if tile == Cell.BOOS_11:
+        return '\x1b[1;32;40m' + tile + '\x1b[0m'
+    if tile == Cell.BOOS_12:
+        return '\x1b[1;32;40m' + tile + '\x1b[0m'
+    if tile == Cell.BOOS_13:
+        return '\x1b[1;32;40m' + tile + '\x1b[0m'
+    if tile == Cell.BOOS_14:
+        return '\x1b[1;32;40m' + tile + '\x1b[0m'
+    if tile == Cell.BOOS_15:
+        return '\x1b[1;32;40m' + tile + '\x1b[0m'
+    if tile == Cell.BOOS_16:
+        return '\x1b[1;32;40m' + tile + '\x1b[0m'
+    if tile == Cell.BOOS_17:
+        return '\x1b[1;36;40m' + tile + '\x1b[0m'
 
 
 def print_map(game_map):
