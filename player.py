@@ -2,21 +2,26 @@ from game_map import *
 from inventory import *
 
 
-class PlayerType:
-    A = 0
-    B = 1
-
-
 class Player:
-    def __init__(self, x, y, health, strength, force, to_hit, defense):
+   ZDZISŁAW = 'Zdzisław'
+   HENRYK = 'Henryk'
+
+    def __init__(self, x, y, type_hero):
+        self.type_hero = type_hero
         self.x = x
         self.y = y
-        self.health = health
-        self.strength = strength
-        self.force = force
-        self.to_hit = to_hit
-        self.defense = defense
         self.inventory = []
+
+        if type_hero == Player.ZDZISŁAW:
+            self.health = 50
+            self.damage = 5
+            self.defense = 3
+            self.to_hit = 4
+        elif type_hero == Player.HENRYK:
+            self.health = 55
+            self.damage = 4
+            self.defense = 2
+            self.to_hit = 5
 
 
 def getch():

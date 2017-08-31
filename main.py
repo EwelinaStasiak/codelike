@@ -47,7 +47,7 @@ def exit_game():
 def start_screen():
     print(open_file('StartScreen.txt'))
     while True:
-        decision = input('Enter P or H or L or E').lower()
+        decision = input.lower()
         if decision == 'p':
             play_screen()
             break
