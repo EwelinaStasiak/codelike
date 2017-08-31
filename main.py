@@ -22,19 +22,28 @@ def getch():
 
 def main():
     start_screen()
-    game_map = create_map('example_level.txt')
+    game_map = create_map('test_level.txt')
     monsters = create_monsters(game_map)
     player_location = search_for_player(game_map)
     player = Player(player_location[0], player_location[1], Player.ZDZISLAW)
     os.system('cls' if os.name == 'nt' else 'clear')
     print_map(game_map)
     messages = []
+    move_to_next_level = []
     while True:
         player_input = getch().upper()
         if check_input(player_input, game_map, player, messages):
-            action_of_player(player_input, game_map, player, monsters, messages)
+            action_of_player(player_input, game_map, player, monsters, messages, move_to_next_level)
             move_monsters(game_map, monsters)
             monsters_attack(game_map, monsters, player, messages)
+            if move_to_next_level:
+                move_to_next_level.clear()
+                game_map.clear()
+                game_map = create_map('example_level.txt')
+                monsters = create_monsters(game_map)
+                player_location = search_for_player(game_map)
+                player.x = player_location[0]
+                player.y = player_location[1]
             os.system('cls' if os.name == 'nt' else 'clear')
             print_map(game_map)
         if messages:
@@ -44,11 +53,20 @@ def main():
 
 
 def play_screen():
+    # while True:
+    #     print("You are in play")
+    #     inp = input("Type E to exit").lower()
+    #     if inp == 'e':
+    #         break
     pass
 
 
 def help_screen():
-    pass
+    while True:
+        print("You are in help")
+        inp = input("Type E to exit").lower()
+        if inp == 'e':
+            break
 
 
 def lose_screen():
@@ -56,11 +74,17 @@ def lose_screen():
 
 
 def win_screen():
-    print(open_file('win_screen.txt'))
+    while True:
+        print(open_file('win_screen.txt'))
 
 
 def hall_of_fame_screen():
-    print('blabla')
+    while True:
+        os.system('cls' if os.name == 'nt' else 'clear')
+        print("You are in fame")
+        inp = input("Type E to exit").lower()
+        if inp == 'e':
+            break
 
 
 def exit_game():
@@ -68,18 +92,17 @@ def exit_game():
 
 
 def start_screen():
-    open_file('StartScreen.txt')
     while True:
+        os.system('cls' if os.name == 'nt' else 'clear')
+        open_file('StartScreen.txt')
         decision = input().lower()
         if decision == 'p':
             play_screen()
             break
         elif decision == 'l':
             hall_of_fame_screen()
-            break
         elif decision == 'h':
             help_screen()
-            break
         elif decision == 'e':
             exit_game()
         else:
