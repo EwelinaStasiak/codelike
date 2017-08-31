@@ -47,7 +47,7 @@ def play_a_game():
         answer = compare_user_answer(player_input, correct_answer)
         print(answer)
         if answer == ['hot', 'hot', 'hot']:
-            open_file('win_screen.txt')
+            open_and_print_file('win_screen.txt')
             break
         player_guesses -= 1
         print('Guesses: ', player_guesses)
