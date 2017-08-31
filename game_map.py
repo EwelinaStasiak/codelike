@@ -115,8 +115,6 @@ def color_tile(tile):
         return '\x1b[0;34;40m' + tile + '\x1b[0m'
     if tile == Cell.STAIRS:
         return '\x1b[0;36;40m' + tile + '\x1b[0m'
-    else:
-        return '\x1b[4;34;40m' + tile + '\x1b[0m'
     if tile == Cell.BOOS_1:
         return '\x1b[1;33;40m' + tile + '\x1b[0m'
     if tile == Cell.BOOS_2:
