@@ -6,9 +6,8 @@ class Weapon:
     MOUSE = 'Mouse'
     TABLE = 'Table'
 
-    def __init__(self, weight, rarity, damage, hit_rate, item_type):
+    def __init__(self, weight, damage, hit_rate, item_type):
         self.weight = weight
-        self.rarity = rarity
         self.damage = damage
         self.hit_rate = hit_rate
         self.item_type = item_type
@@ -20,11 +19,9 @@ class Armor:
     TSHIRT = 'T-shirt'
     SWEATSHIRT = 'Sweatshirt'
 
-    def __init__(self, weight, rarity, defense, hit_points, item_type):
+    def __init__(self, weight, defense, item_type):
         self.weight = weight
-        self.rarity = rarity
         self.defense = defense
-        self.hit_points = hit_points
         self.item_type = item_type
         self.equipped = False
 
@@ -34,9 +31,8 @@ class Pants:
     JEANS = 'Jeans'
     SHORTS = 'Shorts'
 
-    def __init__(self, weight, rarity, defense, item_type):
+    def __init__(self, weight, defense, item_type):
         self.weight = weight
-        self.rarity = rarity
         self.defense = defense
         self.item_type = item_type
         self.equipped = False
@@ -46,9 +42,8 @@ class Food:
     DONUT = 'Donut'
     COFFEE = 'Coffee'
 
-    def __init__(self, weight, rarity, heal_amount, item_type):
+    def __init__(self, weight, heal_amount, item_type):
         self.weight = weight
-        self.rarity = rarity
         self.heal_amount = heal_amount
         self.item_type = item_type
         self.equipped = False
@@ -73,38 +68,34 @@ def create_weapon(rarity):
         weight = 2
         damage = 2 + damage_bonus
         hit_rate = 5 + hit_rate_bonus
-        return Weapon(weight, rarity, damage, hit_rate, Weapon.MOUSE)
+        return Weapon(weight, damage, hit_rate, Weapon.MOUSE)
     elif 33 < r <= 66:
         weight = 4
         damage = 3 + damage_bonus
         hit_rate = 4 + hit_rate_bonus
-        return Weapon(weight, rarity, damage, hit_rate, Weapon.CHAIR)
+        return Weapon(weight, damage, hit_rate, Weapon.CHAIR)
     else:
         weight = 7
         damage = 6 + damage_bonus
         hit_rate = 2 + hit_rate_bonus
-        return Weapon(weight, rarity, damage, hit_rate, Weapon.TABLE)
+        return Weapon(weight, damage, hit_rate, Weapon.TABLE)
 
 
 def create_armor(rarity):
     r = randint(1, 99)
     defense_bonus = rarity_bonus(rarity, 40)
-    health_bonus = rarity_bonus(rarity, 60)
     if r <= 33:
         weight = 1
         defense = 2 + defense_bonus
-        health = 3 + health_bonus
-        return Armor(weight, rarity, defense, health, Armor.TSHIRT)
+        return Armor(weight, defense, Armor.TSHIRT)
     elif 33 < r <= 66:
         weight = 3
         defense = 2 + defense_bonus
-        health = 3 + health_bonus
-        return Armor(weight, rarity, defense, health, Armor.SWEATSHIRT)
+        return Armor(weight, defense, Armor.SWEATSHIRT)
     else:
         weight = 5
         defense = 2 + defense_bonus
-        health = 3 + health_bonus
-        return Armor(weight, rarity, defense, health, Armor.JACKET)
+        return Armor(weight, defense, Armor.JACKET)
 
 
 def create_pants(rarity):
@@ -114,15 +105,15 @@ def create_pants(rarity):
     if r <= 33:
         weight = 2
         defense = 1 + defense_bonus
-        return Pants(weight, rarity, defense, Pants.SHORTS)
+        return Pants(weight, defense, Pants.SHORTS)
     elif 33 < r <= 66:
         weight = 4
         defense = 2 + defense_bonus
-        return Pants(weight, rarity, defense, Pants.SKIRT)
+        return Pants(weight, defense, Pants.SKIRT)
     else:
         weight = 6
         defense = 3 + defense_bonus
-        return Pants(weight, rarity, defense, Pants.JEANS)
+        return Pants(weight, defense, Pants.JEANS)
 
 
 def create_equipment(rarity):
@@ -145,7 +136,7 @@ def create_consumable(rarity):
         food_type = Food.COFFEE
         heal_amount = rarity * 3
 
-    return Food(weight, rarity, heal_amount, food_type)
+    return Food(weight, heal_amount, food_type)
 
 
 def create_item(rarity):
