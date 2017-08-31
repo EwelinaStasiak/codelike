@@ -5,6 +5,7 @@ from inventory import *
 from items import create_item
 from boss_game import *
 
+
 class Player:
     ZDZISLAW = 'Zdzisław'
     HENRYK = 'Henryk'
@@ -20,19 +21,20 @@ class Player:
             self.health = 35
             self.damage = 7
             self.defense = 2
-            self.to_hit = 5
+            self.agility = 5
         elif type_hero == Player.HENRYK:
             self.health = 40
             self.damage = 5
             self.defense = 4
-            self.to_hit = 5
+            self.agility = 5
 
     def attack(self, monsters, monster, messages, game_map):
-        if test_for_hit(self.to_hit, monster.to_hit):
-            dealt_damage = deal_damage(self.damage, monster.defense)
+        weapon = self.get_equipped_item_stats(Weapon)
+        if test_for_hit(self.agility + weapon[2], monster.agility):
+            dealt_damage = deal_damage(self.damage + weapon[1], monster.defense)
             messages.append(
                 'You attacked {} with {}. You dealt {} damage. The blood is everywhere.'.format(
-                    monster.monster_type, 'Chair', dealt_damage))
+                    monster.monster_type, weapon[0], dealt_damage))
             monster.health -= dealt_damage
             if monster.health <= 0:
                 messages.append('The {} died in agony.'.format(monster.monster_type))
@@ -43,6 +45,15 @@ class Player:
                 monsters.remove(monster)
         else:
             messages.append('You missed {}.'.format(monster.monster_type))
+
+    def get_equipped_item_stats(self, type_of_item):
+        for item in self.inventory:
+            if item.__class__ == type_of_item and item.equipped:
+                if type_of_item == Weapon:
+                    return [item.item_type, item.damage, item.agility]
+                if type_of_item == Armor or type_of_item == Pants:
+                    return [item.item_type, item.defense]
+        return ['Fists', 0, 0]
 
 
 def search_for_monster(monsters, new_x, new_y):
@@ -72,12 +83,16 @@ def check_input(player_input, game_map, player, messages):
     elif player_input == 'I':
         while True:
             print_inventory(player.inventory, messages)
-            decision = input('Use item press U, Delete item press D, Exit press E').upper()
+            if not player.inventory:
+                break
+            decision = input('(U)se item, (D)elete item, Any other to exit\n').upper()
             if decision == 'U':
                 use_item(player)
+                break
             elif decision == 'D':
-                pass
-            elif decision == 'E':
+                destroy_item(player, messages)
+                break
+            else:
                 break
     if valid_input:
         tile = game_map[new_x][new_y].tile
