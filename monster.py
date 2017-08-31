@@ -1,7 +1,7 @@
 from random import randint
 
 from fight import deal_damage, test_for_hit, end_game
-from game_map import Tile
+from game_map import Cell
 
 
 class Monster:
@@ -18,14 +18,14 @@ class Monster:
             self.defense = 2
             self.to_hit = 5
             self.drop_rarity = 1
-            self.tile_type = Tile.RAGING_NERD
+            self.tile_type = Cell.RAGING_NERD
         elif monster_type == Monster.SYSOP:
             self.health = 15
             self.damage = 4
             self.defense = 4
             self.to_hit = 7
             self.drop_rarity = 4
-            self.tile_type = Tile.SYSOP
+            self.tile_type = Cell.SYSOP
 
     def attack(self, player):
         if test_for_hit(self.to_hit, player.to_hit):
@@ -42,8 +42,8 @@ class Monster:
         for i in range(4):
             direction = directions.pop(randint(0, len(directions) - 1))
             tile = game_map[self.x + direction[0]][self.y + direction[1]].tile
-            if tile == Tile.EMPTY or (direction[0] == 0 and direction[1] == 0):
-                game_map[self.x][self.y].tile = Tile.EMPTY
+            if tile == Cell.EMPTY or (direction[0] == 0 and direction[1] == 0):
+                game_map[self.x][self.y].tile = Cell.EMPTY
                 self.x += direction[0]
                 self.y += direction[1]
                 game_map[self.x][self.y].tile = self.tile_type
@@ -51,13 +51,13 @@ class Monster:
 
 
 def check_if_player_is_nearby(game_map, monster_x, monster_y):
-    if game_map[monster_x][monster_y - 1].tile == Tile.PLAYER:
+    if game_map[monster_x][monster_y - 1].tile == Cell.PLAYER:
         return True
-    elif game_map[monster_x][monster_y + 1].tile == Tile.PLAYER:
+    elif game_map[monster_x][monster_y + 1].tile == Cell.PLAYER:
         return True
-    elif game_map[monster_x - 1][monster_y].tile == Tile.PLAYER:
+    elif game_map[monster_x - 1][monster_y].tile == Cell.PLAYER:
         return True
-    elif game_map[monster_x + 1][monster_y].tile == Tile.PLAYER:
+    elif game_map[monster_x + 1][monster_y].tile == Cell.PLAYER:
         return True
     return False
 
@@ -78,8 +78,8 @@ def create_monsters(game_map):
     monsters = []
     for column in game_map:
         for cell in column:
-            if cell.tile == Tile.RAGING_NERD:
+            if cell.tile == Cell.RAGING_NERD:
                 monsters.append(Monster(cell.x, cell.y, Monster.RAGING_NERD))
-            elif cell.tile == Tile.SYSOP:
+            elif cell.tile == Cell.SYSOP:
                 monsters.append(Monster(cell.x, cell.y, Monster.SYSOP))
     return monsters
