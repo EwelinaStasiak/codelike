@@ -27,15 +27,16 @@ class Monster:
             self.drop_rarity = 4
             self.tile_type = Cell.SYSOP
 
-    def attack(self, player):
+    def attack(self, player, messages):
         if test_for_hit(self.to_hit, player.to_hit):
             dealt_damage = deal_damage(self.damage, player.defense)
-            print('{} attacked with roundhouse kick. You have lost {} health.'.format(self.monster_type, dealt_damage))
+            messages.append(
+                '{} attacked with roundhouse kick. You have lost {} health.'.format(self.monster_type, dealt_damage))
             player.health -= dealt_damage
             if player.health <= 0:
                 end_game()
         else:
-            print('{} missed.'.format(self.monster_type))
+            messages.append('{} missed.'.format(self.monster_type))
 
     def move(self, game_map):
         directions = [[0, 1], [0, -1], [1, 0], [-1, 0], [0, 0]]
@@ -63,15 +64,17 @@ def check_if_player_is_nearby(game_map, monster_x, monster_y):
 
 
 def move_monsters(game_map, monsters):
-    for monster in monsters:
-        if not check_if_player_is_nearby(game_map, monster.x, monster.y):
-            monster.move(game_map)
+    if monsters:
+        for monster in monsters:
+            if not check_if_player_is_nearby(game_map, monster.x, monster.y):
+                monster.move(game_map)
 
 
-def monsters_attack(game_map, monsters, player):
-    for monster in monsters:
-        if check_if_player_is_nearby(game_map, monster.x, monster.y):
-            monster.attack(player)
+def monsters_attack(game_map, monsters, player, messages):
+    if monsters:
+        for monster in monsters:
+            if check_if_player_is_nearby(game_map, monster.x, monster.y):
+                monster.attack(player, messages)
 
 
 def create_monsters(game_map):
