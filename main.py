@@ -9,7 +9,7 @@ def main():
     game_map = create_map('example_level.txt')
     monsters = create_monsters(game_map)
     player_location = search_for_player(game_map)
-    player = Player(player_location[0], player_location[1], 40, 10, 10)
+    player = Player(player_location[0], player_location[1], 40, 10, 10, 5, 5)
     # start_screen()
     print_map(game_map)
     while True:
