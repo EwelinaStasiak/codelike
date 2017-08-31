@@ -1,8 +1,9 @@
-from items import *
-from player import *
+from items import Food, Pants, Armor, Weapon
 
 
 def print_inventory(inventory):
+    if not inventory:
+        return print('The inventory is empty.')
     for i in range(len(inventory)):
 
         if isinstance(inventory[i], Weapon):
