@@ -2,6 +2,7 @@ from random import randint
 
 from fight import deal_damage, test_for_hit, end_game
 from game_map import Cell
+from items import Pants, Armor
 
 
 class Monster:
@@ -28,8 +29,10 @@ class Monster:
             self.tile_type = Cell.SYSOP
 
     def attack(self, player, messages):
+        player_armor = player.get_equipped_item_stats(Armor)
+        player_pants = player.get_equipped_item_stats(Pants)
         if test_for_hit(self.agility, player.agility):
-            dealt_damage = deal_damage(self.damage, player.defense)
+            dealt_damage = deal_damage(self.damage, player.defense + player_armor[1] + player_pants[1])
             messages.append(
                 '{} attacked with roundhouse kick. You have lost {} health.'.format(self.monster_type, dealt_damage))
             player.health -= dealt_damage
