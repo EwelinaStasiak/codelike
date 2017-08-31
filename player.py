@@ -12,17 +12,18 @@ class Player:
         self.type_hero = type_hero
         self.x = x
         self.y = y
-        self.inventory = [create_item(2), create_item(1), create_item(2), create_item(1), create_item(2), create_item(1), create_item(2), create_item(1), create_item(2), create_item(1), create_item(2), create_item(1), create_item(2), create_item(1)]
+        self.inventory = []
+        self.kill_count = 0
 
         if type_hero == Player.ZDZISLAW:
-            self.health = 50
-            self.damage = 5
-            self.defense = 3
-            self.to_hit = 4
-        elif type_hero == Player.HENRYK:
-            self.health = 55
-            self.damage = 4
+            self.health = 35
+            self.damage = 7
             self.defense = 2
+            self.to_hit = 5
+        elif type_hero == Player.HENRYK:
+            self.health = 40
+            self.damage = 5
+            self.defense = 4
             self.to_hit = 5
 
     def attack(self, monsters, monster, messages, game_map):
@@ -36,6 +37,7 @@ class Player:
                 messages.append('The {} died in agony.'.format(monster.monster_type))
                 game_map[monster.x][monster.y].tile = Cell.EMPTY
                 loot = create_item(monster.drop_rarity)
+                self.kill_count += 1
                 monsters.remove(monster)
         else:
             messages.append('You missed {}.'.format(monster.monster_type))
