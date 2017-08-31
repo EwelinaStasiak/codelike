@@ -7,28 +7,24 @@ def print_inventory(inventory, messages):
     for i in range(len(inventory)):
 
         if isinstance(inventory[i], Weapon):
-            item_weapon = ('{}. '.format(i + 1) + ' Type:{} '.format(inventory[i].item_type) +
-                           ' Weight:{} '.format(inventory[i].weight) +
-                           ' Damage:{} '.format(inventory[i].damage) +
-                           ' Hit Rate:{} '.format(inventory[i].hit_rate) +
-                           ' Equipped:{} '.format(inventory[i].equipped))
+            item_weapon = '{}.  Type:{}  Name:{}  Weight:{}  Damage:{}  Agility:{}  Equipped:{}'.format(
+                i + 1, inventory[i].__class__.__name__, inventory[i].item_type, inventory[i].weight,
+                inventory[i].damage, inventory[i].agility, inventory[i].equipped)
             messages.append(item_weapon)
         elif isinstance(inventory[i], Armor):
-            item_armor = ('{}. '.format(i + 1) + ' Type{} '.format(inventory[i].item_type) +
-                          ' Weight:{} '.format(inventory[i].weight) +
-                          ' Defense:{} '.format(inventory[i].defense) +
-                          ' Equipped:{} '.format(inventory[i].equipped))
+            item_armor = '{}.  Type:{}  Name:{}  Weight:{}  Defense:{}  Equipped:{}'.format(
+                i + 1, inventory[i].__class__.__name__, inventory[i].item_type, inventory[i].weight,
+                inventory[i].defense, inventory[i].equipped)
             messages.append(item_armor)
         elif isinstance(inventory[i], Pants):
-            item_pants = ('{}. '.format(i + 1) + ' Type:{} '.format(inventory[i].item_type) +
-                          ' Weight:{} '.format(inventory[i].weight) +
-                          ' Defense:{} '.format(inventory[i].defense) +
-                          ' Equipped:{} '.format(inventory[i].equipped))
+            item_pants = '{}.  Type:{}  Name:{}  Weight:{}  Defense:{}  Equipped:{}'.format(
+                i + 1, inventory[i].__class__.__name__, inventory[i].item_type, inventory[i].weight,
+                inventory[i].defense, inventory[i].equipped)
             messages.append(item_pants)
         elif isinstance(inventory[i], Food):
-            item_food = ('{}. '.format(i + 1) + ' Type:{} '.format(inventory[i].item_type) +
-                         ' Weight:{} '.format(inventory[i].weight) +
-                         ' Heal Amount:{} '.format(inventory[i].heal_amount))
+            item_food = '{}.  Type:{}  Name:{}  Weight:{}  HealAmount:{}'.format(
+                i + 1, inventory[i].__class__.__name__, inventory[i].item_type, inventory[i].weight,
+                inventory[i].heal_amount)
             messages.append(item_food)
     for message in messages:
         print(message)
