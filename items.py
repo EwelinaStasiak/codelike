@@ -12,6 +12,7 @@ class Weapon:
         self.damage = damage
         self.hit_rate = hit_rate
         self.item_type = item_type
+        self.equipped = False
 
 
 class Armor:
@@ -25,7 +26,7 @@ class Armor:
         self.defense = defense
         self.hit_points = hit_points
         self.item_type = item_type
-
+        self.equipped = False
 
 class Pants:
     SKIRT = 'Skirt'
@@ -37,7 +38,7 @@ class Pants:
         self.rarity = rarity
         self.defense = defense
         self.item_type = item_type
-
+        self.equipped = False
 
 class Food:
     DONUT = 'Donut'
@@ -48,6 +49,7 @@ class Food:
         self.rarity = rarity
         self.heal_amount = heal_amount
         self.item_type = item_type
+        self.equipped = False
 
     def use(self):
         pass

@@ -11,7 +11,7 @@ from screens import open_file
 def main():
     start_screen()
 
-    game_map = create_map('example_level.txt')
+    game_map = create_map('boss.txt')
     monsters = create_monsters(game_map)
     player_location = search_for_player(game_map)
     player = Player(player_location[0], player_location[1], Player.ZDZISLAW)
