@@ -4,6 +4,7 @@ class Cell:
     PLAYER = '@'
     RAGING_NERD = 'A'
     SYSOP = 'B'
+    STAIRS = '<'
     BOOS_1 = '\''
     BOOS_2 = '-'
     BOOS_3 = '('
@@ -48,6 +49,8 @@ def determine_tile_type(character):
         return Cell.RAGING_NERD
     elif character == Cell.SYSOP:
         return Cell.SYSOP
+    elif character == Cell.STAIRS:
+        return Cell.STAIRS
     elif character == Cell.BOOS_1:
         return Cell.BOOS_1
     elif character == Cell.BOOS_2:
@@ -107,6 +110,10 @@ def color_tile(tile):
         return '\x1b[0;35;40m' + tile + '\x1b[0m'
     if tile == Cell.WALL:
         return '\x1b[0;34;40m' + tile + '\x1b[0m'
+    if tile == Cell.STAIRS:
+        return '\x1b[0;36;40m' + tile + '\x1b[0m'
+    else:
+        return '\x1b[4;34;40m' + tile + '\x1b[0m'
 
 
 def print_map(game_map):
