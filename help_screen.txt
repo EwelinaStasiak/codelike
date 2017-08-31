@@ -1,0 +1,21 @@
+*********************************************************
+*                                                       *
+*                                                       *
+*                      HELP                             *
+*                                                       *
+*                                                       *
+* Motion - W (up), S (down), A (left), D (right)        *
+*                                                       *
+* You kill enemy if you try enter in area with enemy    *
+*                                                       *
+* Items are random with random statistic,               *
+* items add to your inventory if you kill enemy.        *
+* You can use items (press I)                           *
+* There is 4 types items.                               *
+* Three of them you can dress (Weapon, Armor, Pants)    *
+* Fourth type is Food, you can eat it -healing yourself *
+*                                                       *
+* You win if you beat the boss in game(HOT-WARM-COLD)   *
+*                                                       *
+*********************************************************
+
