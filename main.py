@@ -55,7 +55,7 @@ def main():
 def play_screen():
     open_file('story_screen.txt')
     time.sleep(30)
-    open_file('creation_character.txt')
+    open_file('choose_character.txt')
     # while True:
     #     print("You are in play")
     #     inp = input("Type E to exit").lower()
