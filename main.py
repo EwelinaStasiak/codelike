@@ -14,7 +14,8 @@ def main():
     game_map = create_map('example_level.txt')
     monsters = create_monsters(game_map)
     player_location = search_for_player(game_map)
-    player = Player(player_location[0], player_location[1], 40, 10, 10, 5, 5)
+    player = Player(player_location[0], player_location[1], Player.ZDZISLAW)
+    os.system('cls' if os.name == 'nt' else 'clear')
     print_map(game_map)
     while True:
         if action_of_player(game_map, player):
@@ -25,11 +26,11 @@ def main():
 
 
 def play_screen():
-    print('Play a game')
+    pass
 
 
 def help_screen():
-    print('help')
+    pass
 
 
 def lose_screen():
@@ -49,9 +50,9 @@ def exit_game():
 
 
 def start_screen():
-    print(open_file('StartScreen.txt'))
+    open_file('StartScreen.txt')
     while True:
-        decision = input.lower()
+        decision = input().lower()
         if decision == 'p':
             play_screen()
             break
