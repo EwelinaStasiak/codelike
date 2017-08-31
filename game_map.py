@@ -1,5 +1,4 @@
 from enum import Enum
-import os
 
 
 class Tile(Enum):
@@ -68,7 +67,6 @@ def color_tile(tile):
 
 
 def print_map(game_map):
-    os.system('cls' if os.name == 'nt' else 'clear')
     row = []
     for i in range(len(game_map[0])):
         row.append([])
