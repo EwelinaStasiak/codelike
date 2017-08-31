@@ -28,6 +28,7 @@ class Armor:
         self.item_type = item_type
         self.equipped = False
 
+
 class Pants:
     SKIRT = 'Skirt'
     JEANS = 'Jeans'
@@ -39,6 +40,7 @@ class Pants:
         self.defense = defense
         self.item_type = item_type
         self.equipped = False
+
 
 class Food:
     DONUT = 'Donut'
