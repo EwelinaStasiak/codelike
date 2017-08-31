@@ -5,22 +5,22 @@ class Cell:
     RAGING_NERD = 'A'
     SYSOP = 'B'
     STAIRS = '<'
-    BOOS_1 = '\''
-    BOOS_2 = '-'
-    BOOS_3 = '('
-    BOOS_4 = ')'
-    BOOS_5 = ' '
-    BOOS_6 = '_'
-    BOOS_7 = '|'
-    BOOS_8 = '\\'
-    BOOS_9 = '/'
-    BOOS_10 = 'p'
-    BOOS_11 = 'a'
-    BOOS_12 = 's'
-    BOOS_13 = 'w'
-    BOOS_14 = 'o'
-    BOOS_15 = 'r'
-    BOOS_16 = 'd'
+    BOSS_1 = '\''
+    BOSS_2 = '-'
+    BOSS_3 = '('
+    BOSS_4 = ')'
+    BOSS_5 = ' '
+    BOSS_6 = '_'
+    BOSS_7 = '|'
+    BOSS_8 = '\\'
+    BOSS_9 = '/'
+    BOSS_10 = 'p'
+    BOSS_11 = 'a'
+    BOSS_12 = 's'
+    BOSS_13 = 'w'
+    BOSS_14 = 'o'
+    BOSS_15 = 'r'
+    BOSS_16 = 'd'
     HOT_GAME = '*'
 
     def __init__(self, x, y, tile):
@@ -52,38 +52,38 @@ def determine_tile_type(character):
         return Cell.SYSOP
     elif character == Cell.STAIRS:
         return Cell.STAIRS
-    elif character == Cell.BOOS_1:
-        return Cell.BOOS_1
-    elif character == Cell.BOOS_2:
-        return Cell.BOOS_2
-    elif character == Cell.BOOS_3:
-        return Cell.BOOS_3
-    elif character == Cell.BOOS_4:
-        return Cell.BOOS_4
-    elif character == Cell.BOOS_5:
-        return Cell.BOOS_5
-    elif character == Cell.BOOS_6:
-        return Cell.BOOS_6
-    elif character == Cell.BOOS_7:
-        return Cell.BOOS_7
-    elif character == Cell.BOOS_8:
-        return Cell.BOOS_8
-    elif character == Cell.BOOS_9:
-        return Cell.BOOS_9
-    elif character == Cell.BOOS_10:
-        return Cell.BOOS_10
-    elif character == Cell.BOOS_11:
-        return Cell.BOOS_11
-    elif character == Cell.BOOS_12:
-        return Cell.BOOS_12
-    elif character == Cell.BOOS_13:
-        return Cell.BOOS_13
-    elif character == Cell.BOOS_14:
-        return Cell.BOOS_14
-    elif character == Cell.BOOS_15:
-        return Cell.BOOS_15
-    elif character == Cell.BOOS_16:
-        return Cell.BOOS_16
+    elif character == Cell.BOSS_1S_1:
+        return Cell.BOSS_1
+    elif character == Cell.BOSS_2:
+        return Cell.BOSS_2
+    elif character == Cell.BOSS_3:
+        return Cell.BOSS_3
+    elif character == Cell.BOSS_4:
+        return Cell.BOSS_4
+    elif character == Cell.BOSS_5:
+        return Cell.BOSS_5
+    elif character == Cell.BOSS_6:
+        return Cell.BOSS_6
+    elif character == Cell.BOSS_7:
+        return Cell.BOSS_7
+    elif character == Cell.BOSS_8:
+        return Cell.BOSS_8
+    elif character == Cell.BOSS_9:
+        return Cell.BOSS_9
+    elif character == Cell.BOSS_10:
+        return Cell.BOSS_10
+    elif character == Cell.BOSS_11:
+        return Cell.BOSS_11
+    elif character == Cell.BOSS_12:
+        return Cell.BOSS_12
+    elif character == Cell.BOSS_13:
+        return Cell.BOSS_13
+    elif character == Cell.BOSS_14:
+        return Cell.BOSS_14
+    elif character == Cell.BOSS_15:
+        return Cell.BOSS_15
+    elif character == Cell.BOSS_16:
+        return Cell.BOSS_16
     elif character == Cell.HOT_GAME:
         return Cell.HOT_GAME
     else:
@@ -115,37 +115,37 @@ def color_tile(tile):
         return '\x1b[0;34;40m' + tile + '\x1b[0m'
     if tile == Cell.STAIRS:
         return '\x1b[0;36;40m' + tile + '\x1b[0m'
-    if tile == Cell.BOOS_1:
+    if tile == Cell.BOSS_1:
         return '\x1b[1;33;40m' + tile + '\x1b[0m'
-    if tile == Cell.BOOS_2:
+    if tile == Cell.BOSS_2:
         return '\x1b[1;33;40m' + tile + '\x1b[0m'
-    if tile == Cell.BOOS_3:
+    if tile == Cell.BOSS_3:
         return '\x1b[1;33;40m' + tile + '\x1b[0m'
-    if tile == Cell.BOOS_4:
+    if tile == Cell.BOSS_4:
         return '\x1b[1;33;40m' + tile + '\x1b[0m'
-    if tile == Cell.BOOS_5:
+    if tile == Cell.BOSS_5:
         return '\x1b[1;33;40m' + tile + '\x1b[0m'
-    if tile == Cell.BOOS_6:
+    if tile == Cell.BOSS_6:
         return '\x1b[1;33;40m' + tile + '\x1b[0m'
-    if tile == Cell.BOOS_7:
+    if tile == Cell.BOSS_7:
         return '\x1b[1;33;40m' + tile + '\x1b[0m'
-    if tile == Cell.BOOS_8:
+    if tile == Cell.BOSS_8:
         return '\x1b[1;33;40m' + tile + '\x1b[0m'
-    if tile == Cell.BOOS_9:
+    if tile == Cell.BOSS_9:
         return '\x1b[1;33;40m' + tile + '\x1b[0m'
-    if tile == Cell.BOOS_10:
+    if tile == Cell.BOSS_10:
         return '\x1b[1;32;40m' + tile + '\x1b[0m'
-    if tile == Cell.BOOS_11:
+    if tile == Cell.BOSS_11:
         return '\x1b[1;32;40m' + tile + '\x1b[0m'
-    if tile == Cell.BOOS_12:
+    if tile == Cell.BOSS_12:
         return '\x1b[1;32;40m' + tile + '\x1b[0m'
-    if tile == Cell.BOOS_13:
+    if tile == Cell.BOSS_13:
         return '\x1b[1;32;40m' + tile + '\x1b[0m'
-    if tile == Cell.BOOS_14:
+    if tile == Cell.BOSS_14:
         return '\x1b[1;32;40m' + tile + '\x1b[0m'
-    if tile == Cell.BOOS_15:
+    if tile == Cell.BOSS_15:
         return '\x1b[1;32;40m' + tile + '\x1b[0m'
-    if tile == Cell.BOOS_16:
+    if tile == Cell.BOSS_16:
         return '\x1b[1;32;40m' + tile + '\x1b[0m'
     if tile == Cell.HOT_GAME:
         return '\x1b[1;36;40m' + tile + '\x1b[0m'
