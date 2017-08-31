@@ -1,5 +1,5 @@
 import random
-
+from screens import *
 
 def generate_boss_number():
 
@@ -47,7 +47,7 @@ def play_a_game():
         answer = compare_user_answer(player_input, correct_answer)
         print(answer)
         if answer == ['hot', 'hot', 'hot']:
-            print("You won!")
+            open_file('win_screen.txt')
             break
         player_guesses -= 1
         print('Guesses: ', player_guesses)

@@ -53,19 +53,28 @@ def main():
 
 
 def play_screen():
-    open_file('story_screen.txt')
-    time.sleep(30)
-    open_file('choose_character.txt')
+        open_file('story_screen.txt')
+        time.sleep(30)
+        #open_file('choose_character.txt') NIE DZIAŁA - MUSZĘ NAPRAWIĆ
+        #choose_character = input().upper()
+        #if choose_character == 'H':
+            #Player.type_hero = Player.HENRYK
+        #elif choose_character == 'Z':
+            #Player.type_hero = Player.ZDZISLAW
+        #elif choose_character == 'E':
+            #break
+        #else:
+            #print('You can enter only H(enryk) or Z(dzisław) or E(xit)')
 
     # while True:
     #     print("You are in play")
     #     inp = input("Type E to exit").lower()
     #     if inp == 'e':
     #         break
-    pass
 
 
 def help_screen():
+    open_file('help_screen.txt')
     while True:
         print("You are in help")
         inp = input("Type E to exit").lower()
@@ -74,7 +83,8 @@ def help_screen():
 
 
 def lose_screen():
-    open_file('lose_screen.txt')
+    while True:
+        open_file('lose_screen.txt')
 
 
 def win_screen():
