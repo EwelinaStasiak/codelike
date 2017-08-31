@@ -16,19 +16,19 @@ class Monster:
             self.health = 10
             self.damage = 2
             self.defense = 2
-            self.to_hit = 5
+            self.agility = 5
             self.drop_rarity = 1
             self.tile_type = Cell.RAGING_NERD
         elif monster_type == Monster.SYSOP:
             self.health = 15
             self.damage = 4
             self.defense = 4
-            self.to_hit = 7
+            self.agility = 7
             self.drop_rarity = 4
             self.tile_type = Cell.SYSOP
 
     def attack(self, player, messages):
-        if test_for_hit(self.to_hit, player.to_hit):
+        if test_for_hit(self.agility, player.agility):
             dealt_damage = deal_damage(self.damage, player.defense)
             messages.append(
                 '{} attacked with roundhouse kick. You have lost {} health.'.format(self.monster_type, dealt_damage))
