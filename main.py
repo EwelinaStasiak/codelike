@@ -22,7 +22,7 @@ def getch():
 
 def main():
     start_screen()
-    game_map = create_map('boss.txt')
+    game_map = create_map('example_level.txt')
     monsters = create_monsters(game_map)
     player_location = search_for_player(game_map)
     player = Player(player_location[0], player_location[1], Player.ZDZISLAW)
@@ -44,8 +44,8 @@ def main():
                 player_location = search_for_player(game_map)
                 player.x = player_location[0]
                 player.y = player_location[1]
-            os.system('cls' if os.name == 'nt' else 'clear')
-            print_map(game_map)
+        os.system('cls' if os.name == 'nt' else 'clear')
+        print_map(game_map)
         if messages:
             for message in messages:
                 print(message)
