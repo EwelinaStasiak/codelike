@@ -52,7 +52,7 @@ def determine_tile_type(character):
         return Cell.SYSOP
     elif character == Cell.STAIRS:
         return Cell.STAIRS
-    elif character == Cell.BOSS_1S_1:
+    elif character == Cell.BOSS_1:
         return Cell.BOSS_1
     elif character == Cell.BOSS_2:
         return Cell.BOSS_2
