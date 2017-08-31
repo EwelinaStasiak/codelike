@@ -26,7 +26,7 @@ def print_inventory(inventory):
 def add_item(item, inventory):
     total_weight = 0
     for element in inventory:
-       total_weight += element.weight
+        total_weight += element.weight
     if total_weight + item.weight <= 50:
         return inventory.append(item)
     else:
@@ -45,5 +45,3 @@ def use_item(inventory):
                 if item.equipped and item_to_use.item_type == item.item_type:
                     item_to_use.equipped = True
                     item.equipped = False
-
-            
