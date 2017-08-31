@@ -16,6 +16,7 @@ class Player:
         self.y = y
         self.inventory = []
         self.kill_count = 0
+        self.end_game = False
 
         if type_hero == Player.ZDZISLAW:
             self.health = 35
@@ -62,22 +63,27 @@ def search_for_monster(monsters, new_x, new_y):
             return monster
 
 
+def print_status(player, messages):
+    messages.append('Hero type:{}  Health:{}  Damage:{}  Defense:{}  Agility:{}  KillCount: {}'.format(
+        player.type_hero, player.health, player.damage, player.defense, player.agility, player.kill_count))
+
+
 def check_input(player_input, game_map, player, messages):
     new_x = player.x
     new_y = player.y
-    valid_input = False
+    input_for_moving = False
     if player_input == 'W':
         new_y -= 1
-        valid_input = True
+        input_for_moving = True
     elif player_input == 'S':
         new_y += 1
-        valid_input = True
+        input_for_moving = True
     elif player_input == 'A':
         new_x -= 1
-        valid_input = True
+        input_for_moving = True
     elif player_input == 'D':
         new_x += 1
-        valid_input = True
+        input_for_moving = True
     elif player_input == 'P':
         return True
     elif player_input == 'I':
@@ -94,7 +100,9 @@ def check_input(player_input, game_map, player, messages):
                 break
             else:
                 break
-    if valid_input:
+    elif player_input == 'O':
+        print_status(player, messages)
+    if input_for_moving:
         tile = game_map[new_x][new_y].tile
         if tile == Cell.EMPTY or tile == Cell.RAGING_NERD or tile == Cell.SYSOP \
                 or tile == Cell.STAIRS or tile == Cell.HOT_GAME:
@@ -125,7 +133,7 @@ def determine_action_type(player, new_x, new_y, game_map, monsters, messages, mo
         print('Play HOT - WARM - COLD game. ')
         print('If you guess a three-digit number.')
         print('I\'ll give you a super important secret paper and you close the portal to your world.')
-        play_a_game()
+        play_a_hot_game(player)
 
 
 def action_of_player(player_input, game_map, player, monsters, messages, move_to_next_level):
