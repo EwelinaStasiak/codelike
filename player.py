@@ -3,7 +3,7 @@ from fight import test_for_hit, deal_damage
 from game_map import *
 from inventory import *
 from items import create_item
-
+from boss_game import *
 
 class Player:
     ZDZISLAW = 'Zdzisław'
@@ -107,7 +107,10 @@ def determine_action_type(player, new_x, new_y, game_map, monsters, messages, mo
             messages.append('You moved to the next level')
             return True
     elif game_map[new_x][new_y].tile == Cell.HOT_GAME:
-        pass
+        print('Play HOT - WARM - COLD game. ')
+        print('If you guess a three-digit number.')
+        print('I\'ll give you a super important secret paper and you close the portal to your world.')
+        play_a_game()
 
 
 def action_of_player(player_input, game_map, player, monsters, messages, move_to_next_level):

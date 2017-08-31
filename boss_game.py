@@ -39,15 +39,16 @@ def compare_user_answer(guess, correct_answer):
 
 def play_a_game():
     player_guesses = 10
+    print('Guesses: ', player_guesses)
     correct_answer = generate_boss_number()
     print(correct_answer)
     while player_guesses > 0:
-        user_input = get_player_input()
-        feedback = compare_user_answer(user_input, correct_answer)
-        print(feedback)
-        if feedback == ['hot', 'hot', 'hot']:
+        player_input = get_player_input()
+        answer = compare_user_answer(player_input, correct_answer)
+        print(answer)
+        if answer == ['hot', 'hot', 'hot']:
             print("You won!")
             break
         player_guesses -= 1
-
+        print('Guesses: ', player_guesses)
 
