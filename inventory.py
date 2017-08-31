@@ -1,5 +1,5 @@
 from items import *
-
+from player import *
 
 def print_inventory(inventory):
     for i in range(len(inventory)):
@@ -30,16 +30,17 @@ def add_item(item, inventory):
     if total_weight + item.weight <= 50:
         return inventory.append(item)
     else:
-        print("You cant'add this item ")
+        print("You can not add this item because the equipment would be too heavy.")
 
 
-def use_item(inventory):
+def use_item(inventory, player):
     use = input('Use item - Press U')
     if use == 'U':
         number_item = int(input('Press number item which you want to use:'))
         item_to_use = inventory[number_item - 1]
         if isinstance(item_to_use, Food):
-            pass
+            player.health += item_to_use.heal_amount
+
         else:
             for item in inventory:
                 if item.equipped and item_to_use.item_type == item.item_type:
