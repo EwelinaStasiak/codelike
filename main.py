@@ -18,8 +18,7 @@ def main():
     os.system('cls' if os.name == 'nt' else 'clear')
     print_map(game_map)
     while True:
-        if action_of_player(game_map, player):
-            os.system('cls' if os.name == 'nt' else 'clear')
+        if action_of_player(game_map, player, monsters):
             move_monsters(game_map, monsters)
             print_map(game_map)
             monsters_attack(game_map, monsters, player)
