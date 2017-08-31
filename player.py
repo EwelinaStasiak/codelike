@@ -29,10 +29,10 @@ class Player:
         if test_for_hit(self.to_hit, monster.to_hit):
             dealt_damage = deal_damage(self.damage, monster.defense)
             messages.append(
-                'You attacked {} with {}. You dealt {} damage.'.format(monster.monster_type, 'Chair', dealt_damage))
+                'You attacked {} with {}. You dealt {} damage. The blood is everywhere.'.format(monster.monster_type, 'Chair', dealt_damage))
             monster.health -= dealt_damage
             if monster.health <= 0:
-                messages.append('You killed {}'.format(monster.monster_type))
+                messages.append('The {} died in agony.'.format(monster.monster_type))
                 game_map[monster.x][monster.y].tile = Cell.EMPTY
                 loot = create_item(monster.drop_rarity)
                 monsters.remove(monster)
