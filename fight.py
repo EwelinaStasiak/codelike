@@ -1,4 +1,5 @@
 from random import randint
+from screens import *
 
 
 def test_for_hit(to_hit, evade):
@@ -23,3 +24,4 @@ def deal_damage(damage, defense):
 
 def end_game():
     print('You have died')
+    open_and_print_file('lose_screen.txt')

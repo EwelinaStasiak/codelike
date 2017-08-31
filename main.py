@@ -1,11 +1,11 @@
 import os
-
+import time
 from game_map import import_map_from_file as create_map
 from game_map import print_map
 from game_map import search_for_player
 from player import action_of_player, Player, check_input
 from monster import create_monsters, move_monsters, monsters_attack
-from screens import open_file
+from screens import open_and_print_file
 
 
 def getch():
@@ -53,29 +53,41 @@ def main():
 
 
 def play_screen():
+        open_and_print_file('story_screen.txt')
+        time.sleep(3)
+        open_and_print_file('choose_character.txt') # NIE DZIAŁA - MUSZĘ NAPRAWIĆ
+        choose_character = input().upper()
+        if choose_character == 'H':
+            Player.type_hero = Player.HENRYK
+        elif choose_character == 'Z':
+            Player.type_hero = Player.ZDZISLAW
+        elif choose_character == 'E':
+            return
+        else:
+            print('You can enter only H(enryk) or Z(dzisław) or E(xit)')
+
     # while True:
     #     print("You are in play")
     #     inp = input("Type E to exit").lower()
     #     if inp == 'e':
     #         break
-    pass
 
 
 def help_screen():
+    open_and_print_file('help_screen.txt')
+    print("You are in help")
     while True:
-        print("You are in help")
         inp = input("Type E to exit").lower()
         if inp == 'e':
-            break
+            return
 
 
 def lose_screen():
-    pass
+    open_and_print_file('lose_screen.txt')
 
 
 def win_screen():
-    while True:
-        print(open_file('win_screen.txt'))
+    print(open_and_print_file('win_screen.txt'))
 
 
 def hall_of_fame_screen():
@@ -94,7 +106,7 @@ def exit_game():
 def start_screen():
     while True:
         os.system('cls' if os.name == 'nt' else 'clear')
-        open_file('StartScreen.txt')
+        open_and_print_file('StartScreen.txt')
         decision = input().lower()
         if decision == 'p':
             play_screen()
