@@ -1,5 +1,5 @@
 import os
-
+import time
 from game_map import import_map_from_file as create_map
 from game_map import print_map
 from game_map import search_for_player
@@ -53,6 +53,9 @@ def main():
 
 
 def play_screen():
+    open_file('story_screen.txt')
+    time.sleep(30)
+    open_file('creation_character.txt')
     # while True:
     #     print("You are in play")
     #     inp = input("Type E to exit").lower()
