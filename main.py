@@ -55,7 +55,7 @@ def main():
 def play_screen():
         open_and_print_file('story_screen.txt')
         time.sleep(3)
-        open_and_print_file('choose_character.txt') # NIE DZIAŁA - MUSZĘ NAPRAWIĆ
+        open_and_print_file('choose_character.txt')
         choose_character = input().upper()
         if choose_character == 'H':
             Player.type_hero = Player.HENRYK
