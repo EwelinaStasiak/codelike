@@ -37,7 +37,7 @@ def compare_user_answer(guess, correct_answer):
     return hints
 
 
-def main():
+def play_a_game():
     player_guesses = 10
     correct_answer = generate_boss_number()
     print(correct_answer)
