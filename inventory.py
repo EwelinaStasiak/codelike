@@ -8,36 +8,36 @@ def print_inventory(inventory, messages):
 
         if isinstance(inventory[i], Weapon):
             item_weapon = (str(i + 1) + 'Type: {} '.format(inventory[i].item_type) +
-                            'Weight: {} '.format(inventory[i].weight) +
-                            'Rarity: {} '.format(inventory[i].rarity) +
-                            'Damage: {} '.format(inventory[i].damage) +
-                            'Hit Rate: {} '.format(inventory[i].hit_rate) +
-                            'Equipped: {} '.format(inventory[i].equipped))
+                           'Weight: {} '.format(inventory[i].weight) +
+                           'Rarity: {} '.format(inventory[i].rarity) +
+                           'Damage: {} '.format(inventory[i].damage) +
+                           'Hit Rate: {} '.format(inventory[i].hit_rate) +
+                           'Equipped: {} '.format(inventory[i].equipped))
             messages.append(item_weapon)
 
         elif isinstance(inventory[i], Armor):
             item_armor = (str(i + 1) + 'Type {} '.format(inventory[i].item_type) +
-                            'Weight: {} '.format(inventory[i].weight) +
-                            'Rarity: {} '.format(inventory[i].rarity) +
-                            'Defense: {} '.format(inventory[i].defense) +
-                            'Hit Points: {} '.format(inventory[i].hit_points) +
-                            'Equipped: {} '.format(inventory[i].equipped))
+                          'Weight: {} '.format(inventory[i].weight) +
+                          'Rarity: {} '.format(inventory[i].rarity) +
+                          'Defense: {} '.format(inventory[i].defense) +
+                          'Hit Points: {} '.format(inventory[i].hit_points) +
+                          'Equipped: {} '.format(inventory[i].equipped))
             messages.append(item_armor)
 
         elif isinstance(inventory[i], Pants):
             item_pants = (str(i + 1) + 'Type: {} '.format(inventory[i].item_type) +
-                            'Weight: {} '.format(inventory[i].weight) +
-                            'Rarity: {} '.format(inventory[i].rarity) +
-                            'Defense: {} '.format(inventory[i].defense) +
-                            'Equipped: {} '.format(inventory[i].equipped))
+                          'Weight: {} '.format(inventory[i].weight) +
+                          'Rarity: {} '.format(inventory[i].rarity) +
+                          'Defense: {} '.format(inventory[i].defense) +
+                          'Equipped: {} '.format(inventory[i].equipped))
             messages.append(item_pants)
 
         elif isinstance(inventory[i], Food):
             item_food = (str(i + 1) + 'Type: {} '.format(inventory[i].item_type) +
-                            'Weight: {} '.format(inventory[i].weight) +
-                            'Rarity: {} '.format(inventory[i].rarity) +
-                            'Heal Amount: {} '.format(inventory[i].heal_amount) +
-                            'Equipped: {} '.format(inventory[i].equipped))
+                         'Weight: {} '.format(inventory[i].weight) +
+                         'Rarity: {} '.format(inventory[i].rarity) +
+                         'Heal Amount: {} '.format(inventory[i].heal_amount) +
+                         'Equipped: {} '.format(inventory[i].equipped))
             messages.append(item_food)
     for message in messages:
         print(message)
@@ -55,13 +55,22 @@ def add_item(item, inventory, messages):
 
 
 def use_item(player):
-    number_item = int(input('Press number item which you want to use:'))# trzeba dodać żeby dało się tylko wpisac numer
-    item_to_use = player.inventory[number_item - 1]
-    if isinstance(item_to_use, Food):
-        player.health += item_to_use.heal_amount
+    # trzeba dodać żeby dało się tylko wpisac numer
+    number_item = int(input('Press number item which you want to use:'))
+    if isinstance(player.inventory[number_item - 1], Food):
+        player.health += player.inventory[number_item - 1].heal_amount
         player.inventory.remove(player.inventory[number_item - 1])
     else:
+        equipped_item_found = False
         for item in player.inventory:
-            if item.equipped and item_to_use.item_type == item.item_type:
-                item_to_use.equipped = True
-                item.equipped = False
+            if item.__class__ == player.inventory[number_item - 1].__class__ and item.equipped:
+                equipped_item_found = True
+                break
+        if equipped_item_found:
+            for item in player.inventory:
+                if item.__class__ == player.inventory[number_item - 1].__class__ and item.equipped:
+                    item.equipped = False
+                    player.inventory[number_item - 1].equipped = True
+                    break
+        else:
+            player.inventory[number_item - 1].equipped = True
