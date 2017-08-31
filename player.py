@@ -36,29 +36,26 @@ def getch():
     return ch
 
 
+def determine_action_type(player, new_x, new_y, game_map):
+    if game_map[new_x][new_y].tile == Cell.EMPTY:
+        game_map[player.x][player.y].tile = Cell.EMPTY
+        player.x = new_x
+        player.y = new_y
+        game_map[player.x][player.y].tile = Cell.PLAYER
+        return True
+
+
 def action_of_player(game_map, player):
     player_finished_turn = False
     input_moving = getch().upper()
     if input_moving == 'W':
-        if game_map[player.x][player.y - 1].tile == Cell.EMPTY:
-            game_map[player.x][player.y].tile = Cell.EMPTY
-            player.y -= 1
-            player_finished_turn = True
+        player_finished_turn = determine_action_type(player, player.x, player.y - 1, game_map)
     elif input_moving == 'S':
-        if game_map[player.x][player.y + 1].tile == Cell.EMPTY:
-            game_map[player.x][player.y].tile = Cell.EMPTY
-            player.y += 1
-            player_finished_turn = True
+        player_finished_turn = determine_action_type(player, player.x, player.y + 1, game_map)
     elif input_moving == 'A':
-        if game_map[player.x - 1][player.y].tile == Cell.EMPTY:
-            game_map[player.x][player.y].tile = Cell.EMPTY
-            player.x -= 1
-            player_finished_turn = True
+        player_finished_turn = determine_action_type(player, player.x - 1, player.y, game_map)
     elif input_moving == 'D':
-        if game_map[player.x + 1][player.y].tile == Cell.EMPTY:
-            game_map[player.x][player.y].tile = Cell.EMPTY
-            player.x += 1
-            player_finished_turn = True
+        player_finished_turn = determine_action_type(player, player.x + 1, player.y, game_map)
     elif input_moving == 'P':
         player_finished_turn = True
     elif input_moving == 'I':
