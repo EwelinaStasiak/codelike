@@ -33,7 +33,7 @@ class Player:
         if test_for_hit(self.agility + weapon[2], monster.agility):
             dealt_damage = deal_damage(self.damage + weapon[1], monster.defense)
             messages.append(
-                'You attacked {} with {}. You dealt {} damage. The blood is everywhere.'.format(
+                'You attacked {} with {}. You dealt {} damage. The blood is everywhere'.format(
                     monster.monster_type, weapon[0], dealt_damage))
             monster.health -= dealt_damage
             if monster.health <= 0:
@@ -53,7 +53,7 @@ class Player:
                     return [item.item_type, item.damage, item.agility]
                 if type_of_item == Armor or type_of_item == Pants:
                     return [item.item_type, item.defense]
-        return ['Fists', 0, 0]
+        return ['Spoon', 0, 0]
 
 
 def search_for_monster(monsters, new_x, new_y):
@@ -131,17 +131,17 @@ def determine_action_type(player, new_x, new_y, game_map, monsters, messages, mo
 def action_of_player(player_input, game_map, player, monsters, messages, move_to_next_level):
     player_finished_turn = False
     if player_input == 'W':
-        player_finished_turn = determine_action_type(player, player.x, player.y - 1, game_map, monsters, messages,
-                                                     move_to_next_level)
+        player_finished_turn = determine_action_type(
+            player, player.x, player.y - 1, game_map, monsters, messages, move_to_next_level)
     elif player_input == 'S':
-        player_finished_turn = determine_action_type(player, player.x, player.y + 1, game_map, monsters, messages,
-                                                     move_to_next_level)
+        player_finished_turn = determine_action_type(
+            player, player.x, player.y + 1, game_map, monsters, messages, move_to_next_level)
     elif player_input == 'A':
-        player_finished_turn = determine_action_type(player, player.x - 1, player.y, game_map, monsters, messages,
-                                                     move_to_next_level)
+        player_finished_turn = determine_action_type(
+            player, player.x - 1, player.y, game_map, monsters, messages, move_to_next_level)
     elif player_input == 'D':
-        player_finished_turn = determine_action_type(player, player.x + 1, player.y, game_map, monsters, messages,
-                                                     move_to_next_level)
+        player_finished_turn = determine_action_type(
+            player, player.x + 1, player.y, game_map, monsters, messages, move_to_next_level)
     elif player_input == 'P':
         player_finished_turn = True
 
