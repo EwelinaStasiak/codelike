@@ -62,12 +62,16 @@ def check_if_player_is_nearby(game_map, monster_x, monster_y):
     return False
 
 
-def move_monsters(game_map, monsters, player):
+def move_monsters(game_map, monsters):
+    for monster in monsters:
+        if not check_if_player_is_nearby(game_map, monster.x, monster.y):
+            monster.move(game_map)
+
+
+def monsters_attack(game_map, monsters, player):
     for monster in monsters:
         if check_if_player_is_nearby(game_map, monster.x, monster.y):
             monster.attack(player)
-        else:
-            monster.move(game_map)
 
 
 def create_monsters(game_map):
