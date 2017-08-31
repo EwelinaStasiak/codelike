@@ -1,15 +1,10 @@
-from enum import Enum
-
-
-class Tile(Enum):
+class Cell:
     WALL = '#'
     EMPTY = '.'
     PLAYER = '@'
     RAGING_NERD = 'A'
     SYSOP = 'B'
 
-
-class Cell:
     def __init__(self, x, y, tile):
         self.x = x
         self.y = y
@@ -21,24 +16,24 @@ def create_empty_map(width=50, height=20):
     for x in range(width):
         column = []
         for y in range(height):
-            column.append(Cell(x, y, Tile.EMPTY))
+            column.append(Cell(x, y, Cell.EMPTY))
         game_map.append(column)
     return game_map
 
 
 def determine_tile_type(character):
-    if character == Tile.WALL.value:
-        return Tile.WALL
-    elif character == Tile.EMPTY.value:
-        return Tile.EMPTY
-    elif character == Tile.PLAYER.value:
-        return Tile.PLAYER
-    elif character == Tile.RAGING_NERD.value:
-        return Tile.RAGING_NERD
-    elif character == Tile.SYSOP.value:
-        return Tile.SYSOP
+    if character == Cell.WALL:
+        return Cell.WALL
+    elif character == Cell.EMPTY:
+        return Cell.EMPTY
+    elif character == Cell.PLAYER:
+        return Cell.PLAYER
+    elif character == Cell.RAGING_NERD:
+        return Cell.RAGING_NERD
+    elif character == Cell.SYSOP:
+        return Cell.SYSOP
     else:
-        return Tile.EMPTY
+        return Cell.EMPTY
 
 
 def import_map_from_file(filename):
@@ -54,16 +49,16 @@ def import_map_from_file(filename):
 
 
 def color_tile(tile):
-    if tile == Tile.PLAYER:
-        return '\x1b[1;33;40m' + tile.value + '\x1b[0m'
-    if tile == Tile.RAGING_NERD:
-        return '\x1b[1;31;40m' + tile.value + '\x1b[0m'
-    if tile == Tile.SYSOP:
-        return '\x1b[1;31;40m' + tile.value + '\x1b[0m'
-    if tile == Tile.EMPTY:
-        return '\x1b[0;35;40m' + tile.value + '\x1b[0m'
-    if tile == Tile.WALL:
-        return '\x1b[0;34;40m' + tile.value + '\x1b[0m'
+    if tile == Cell.PLAYER:
+        return '\x1b[1;33;40m' + tile + '\x1b[0m'
+    if tile == Cell.RAGING_NERD:
+        return '\x1b[1;31;40m' + tile + '\x1b[0m'
+    if tile == Cell.SYSOP:
+        return '\x1b[1;31;40m' + tile + '\x1b[0m'
+    if tile == Cell.EMPTY:
+        return '\x1b[0;35;40m' + tile + '\x1b[0m'
+    if tile == Cell.WALL:
+        return '\x1b[0;34;40m' + tile + '\x1b[0m'
 
 
 def print_map(game_map):
@@ -78,5 +73,5 @@ def print_map(game_map):
 def search_for_player(game_map):
     for column in game_map:
         for cell in column:
-            if cell.tile == Tile.PLAYER:
+            if cell.tile == Cell.PLAYER:
                 return [cell.x, cell.y]
