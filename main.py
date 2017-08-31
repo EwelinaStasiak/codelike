@@ -1,5 +1,4 @@
 import os
-import time
 
 from fight import end_game
 from game_map import import_map_from_file as create_map
