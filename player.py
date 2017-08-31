@@ -1,6 +1,7 @@
 from fight import test_for_hit, deal_damage
 from game_map import *
 from inventory import *
+from items import create_item
 
 
 class Player:
@@ -24,28 +25,19 @@ class Player:
             self.defense = 2
             self.to_hit = 5
 
-    def attack(self, monsters, monster):
+    def attack(self, monsters, monster, messages, game_map):
         if test_for_hit(self.to_hit, monster.to_hit):
             dealt_damage = deal_damage(self.damage, monster.defense)
-            print('You attacked {} with {}. You dealt {} damage.'.format(monster.monster_type, 'Chair', dealt_damage))
+            messages.append(
+                'You attacked {} with {}. You dealt {} damage.'.format(monster.monster_type, 'Chair', dealt_damage))
             monster.health -= dealt_damage
             if monster.health <= 0:
-                # kill
-                pass
+                messages.append('You killed {}'.format(monster.monster_type))
+                game_map[monster.x][monster.y].tile = Cell.EMPTY
+                loot = create_item(monster.drop_rarity)
+                monsters.remove(monster)
         else:
-            print('You missed {}.'.format(monster.monster_type))
-
-
-def getch():
-    import sys, tty, termios
-    fd = sys.stdin.fileno()
-    old_settings = termios.tcgetattr(fd)
-    try:
-        tty.setraw(sys.stdin.fileno())
-        ch = sys.stdin.read(1)
-    finally:
-        termios.tcsetattr(fd, termios.TCSADRAIN, old_settings)
-    return ch
+            messages.append('You missed {}.'.format(monster.monster_type))
 
 
 def search_for_monster(monsters, new_x, new_y):
@@ -54,7 +46,35 @@ def search_for_monster(monsters, new_x, new_y):
             return monster
 
 
-def determine_action_type(player, new_x, new_y, game_map, monsters):
+def check_input(player_input, game_map, player, messages):
+    new_x = player.x
+    new_y = player.y
+    valid_input = False
+    if player_input == 'W':
+        new_y -= 1
+        valid_input = True
+    elif player_input == 'S':
+        new_y += 1
+        valid_input = True
+    elif player_input == 'A':
+        new_x -= 1
+        valid_input = True
+    elif player_input == 'D':
+        new_x += 1
+        valid_input = True
+    elif player_input == 'P':
+        return True
+    elif player_input == 'I':
+        print_inventory(player.inventory, messages)
+
+    if valid_input:
+        tile = game_map[new_x][new_y].tile
+        if tile == Cell.EMPTY or tile == Cell.RAGING_NERD or tile == Cell.SYSOP:
+            return True
+    return False
+
+
+def determine_action_type(player, new_x, new_y, game_map, monsters, messages):
     if game_map[new_x][new_y].tile == Cell.EMPTY:
         game_map[player.x][player.y].tile = Cell.EMPTY
         player.x = new_x
@@ -63,25 +83,22 @@ def determine_action_type(player, new_x, new_y, game_map, monsters):
         return True
     if game_map[new_x][new_y].tile == Cell.RAGING_NERD or game_map[new_x][new_y].tile == Cell.SYSOP:
         monster = search_for_monster(monsters, new_x, new_y)
-        player.attack(monsters, monster)
+        player.attack(monsters, monster, messages, game_map)
         return True
 
 
-def action_of_player(game_map, player, monsters):
+def action_of_player(player_input, game_map, player, monsters, messages):
     player_finished_turn = False
-    input_moving = getch().upper()
-    if input_moving == 'W':
-        player_finished_turn = determine_action_type(player, player.x, player.y - 1, game_map, monsters)
-    elif input_moving == 'S':
-        player_finished_turn = determine_action_type(player, player.x, player.y + 1, game_map, monsters)
-    elif input_moving == 'A':
-        player_finished_turn = determine_action_type(player, player.x - 1, player.y, game_map, monsters)
-    elif input_moving == 'D':
-        player_finished_turn = determine_action_type(player, player.x + 1, player.y, game_map, monsters)
-    elif input_moving == 'P':
+    if player_input == 'W':
+        player_finished_turn = determine_action_type(player, player.x, player.y - 1, game_map, monsters, messages)
+    elif player_input == 'S':
+        player_finished_turn = determine_action_type(player, player.x, player.y + 1, game_map, monsters, messages)
+    elif player_input == 'A':
+        player_finished_turn = determine_action_type(player, player.x - 1, player.y, game_map, monsters, messages)
+    elif player_input == 'D':
+        player_finished_turn = determine_action_type(player, player.x + 1, player.y, game_map, monsters, messages)
+    elif player_input == 'P':
         player_finished_turn = True
-    elif input_moving == 'I':
-        print_inventory(player.inventory)
 
     game_map[player.x][player.y].tile = Cell.PLAYER
     return player_finished_turn
