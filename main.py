@@ -1,5 +1,7 @@
 import os
 import time
+
+from fight import end_game
 from game_map import import_map_from_file as create_map
 from game_map import print_map
 from game_map import search_for_player
@@ -21,16 +23,18 @@ def getch():
 
 
 def main():
-    start_screen()
-    game_map = create_map('example_level.txt')
+    files = ['level_.txt', 'example_level.txt', 'boss.txt']
+    level = 0
+    game_map = create_map(files[level])
     monsters = create_monsters(game_map)
     player_location = search_for_player(game_map)
-    player = Player(player_location[0], player_location[1], Player.ZDZISLAW)
+    player = start_screen(player_location)
+
     os.system('cls' if os.name == 'nt' else 'clear')
     print_map(game_map)
     messages = []
     move_to_next_level = []
-    while True:
+    while player.health > 0:
         player_input = getch().upper()
         if check_input(player_input, game_map, player, messages):
             action_of_player(player_input, game_map, player, monsters, messages, move_to_next_level)
@@ -39,7 +43,8 @@ def main():
             if move_to_next_level:
                 move_to_next_level.clear()
                 game_map.clear()
-                game_map = create_map('example_level.txt')
+                level += 1
+                game_map = create_map(files[level])
                 monsters = create_monsters(game_map)
                 player_location = search_for_player(game_map)
                 player.x = player_location[0]
@@ -50,30 +55,38 @@ def main():
             for message in messages:
                 print(message)
             messages.clear()
+        if player.end_game:
+            break
+    if player.health < 1:
+        os.system('cls' if os.name == 'nt' else 'clear')
+        input('You have died. Hit enter')
+        os.system('cls' if os.name == 'nt' else 'clear')
+        end_game()
+    else:
+        os.system('cls' if os.name == 'nt' else 'clear')
+        open_and_print_file('win_screen.txt')
 
 
-def play_screen():
-        open_and_print_file('story_screen.txt')
-        time.sleep(3)
-        open_and_print_file('choose_character.txt') # NIE DZIAŁA - MUSZĘ NAPRAWIĆ
+def play_screen(player_location):
+    os.system('cls' if os.name == 'nt' else 'clear')
+    open_and_print_file('story_screen.txt')
+    input('Hit enter to continue')
+    os.system('cls' if os.name == 'nt' else 'clear')
+    open_and_print_file('choose_character.txt')
+    while True:
         choose_character = input().upper()
         if choose_character == 'H':
-            Player.type_hero = Player.HENRYK
+            return Player(player_location[0], player_location[1], Player.HENRYK)
         elif choose_character == 'Z':
-            Player.type_hero = Player.ZDZISLAW
+            return Player(player_location[0], player_location[1], Player.ZDZISLAW)
         elif choose_character == 'E':
-            return
+            return False
         else:
             print('You can enter only H(enryk) or Z(dzisław) or E(xit)')
 
-    # while True:
-    #     print("You are in play")
-    #     inp = input("Type E to exit").lower()
-    #     if inp == 'e':
-    #         break
-
 
 def help_screen():
+    os.system('cls' if os.name == 'nt' else 'clear')
     open_and_print_file('help_screen.txt')
     print("You are in help")
     while True:
@@ -103,14 +116,15 @@ def exit_game():
     exit()
 
 
-def start_screen():
+def start_screen(player_location):
     while True:
         os.system('cls' if os.name == 'nt' else 'clear')
         open_and_print_file('StartScreen.txt')
         decision = input().lower()
         if decision == 'p':
-            play_screen()
-            break
+            character = play_screen(player_location)
+            if character:
+                return character
         elif decision == 'l':
             hall_of_fame_screen()
         elif decision == 'h':
