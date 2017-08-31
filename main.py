@@ -21,6 +21,16 @@ def getch():
     return ch
 
 
+def add_highscore(player):
+    name = input('Please enter your name.\n')
+    highscore = 'Name:{} / KillCount:{} / Health:{} / HeroType:{} \n'.format(
+        name, player.kill_count, player.health, player.type_hero)
+    if not os.path.isfile('highscores.txt'):
+        open('highscores.txt', "a").close()
+    with open('highscores.txt', "a") as file:
+        file.write(highscore)
+
+
 def main():
     files = ['level_.txt', 'example_level.txt', 'boss.txt']
     level = 0
@@ -63,6 +73,7 @@ def main():
         end_game()
     else:
         os.system('cls' if os.name == 'nt' else 'clear')
+        add_highscore(player)
         open_and_print_file('win_screen.txt')
 
 
@@ -105,8 +116,12 @@ def win_screen():
 def hall_of_fame_screen():
     while True:
         os.system('cls' if os.name == 'nt' else 'clear')
-        print("You are in fame")
-        inp = input("Type E to exit").lower()
+        print('This brave souls saved the world:\n')
+        if os.path.isfile('highscores.txt'):
+            open_and_print_file('highscores.txt')
+        else:
+            print('The world was not saved yet :( ')
+        inp = input("\nType E to exit").lower()
         if inp == 'e':
             break
 
