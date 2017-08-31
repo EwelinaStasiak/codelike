@@ -1,6 +1,7 @@
 from items import *
 from player import *
 
+
 def print_inventory(inventory):
     for i in range(len(inventory)):
 
