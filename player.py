@@ -1,3 +1,4 @@
+import inventory
 from fight import test_for_hit, deal_damage
 from game_map import *
 from inventory import *
@@ -37,6 +38,7 @@ class Player:
                 messages.append('The {} died in agony.'.format(monster.monster_type))
                 game_map[monster.x][monster.y].tile = Cell.EMPTY
                 loot = create_item(monster.drop_rarity)
+                inventory.add_item(loot, self.inventory, messages)
                 self.kill_count += 1
                 monsters.remove(monster)
         else:
@@ -79,7 +81,8 @@ def check_input(player_input, game_map, player, messages):
                 break
     if valid_input:
         tile = game_map[new_x][new_y].tile
-        if tile == Cell.EMPTY or tile == Cell.RAGING_NERD or tile == Cell.SYSOP or tile == Cell.STAIRS:
+        if tile == Cell.EMPTY or tile == Cell.RAGING_NERD or tile == Cell.SYSOP \
+                or tile == Cell.STAIRS or tile == Cell.HOT_GAME:
             return True
     return False
 
@@ -103,6 +106,8 @@ def determine_action_type(player, new_x, new_y, game_map, monsters, messages, mo
             move_to_next_level.append(True)
             messages.append('You moved to the next level')
             return True
+    elif game_map[new_x][new_y].tile == Cell.HOT_GAME:
+        pass
 
 
 def action_of_player(player_input, game_map, player, monsters, messages, move_to_next_level):

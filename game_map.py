@@ -21,7 +21,7 @@ class Cell:
     BOOS_14 = 'o'
     BOOS_15 = 'r'
     BOOS_16 = 'd'
-    BOOS_17 = '*'
+    HOT_GAME = '*'
 
     def __init__(self, x, y, tile):
         self.x = x
@@ -84,8 +84,8 @@ def determine_tile_type(character):
         return Cell.BOOS_15
     elif character == Cell.BOOS_16:
         return Cell.BOOS_16
-    elif character == Cell.BOOS_17:
-        return Cell.BOOS_17
+    elif character == Cell.HOT_GAME:
+        return Cell.HOT_GAME
     else:
         return Cell.EMPTY
 
@@ -147,7 +147,7 @@ def color_tile(tile):
         return '\x1b[1;32;40m' + tile + '\x1b[0m'
     if tile == Cell.BOOS_16:
         return '\x1b[1;32;40m' + tile + '\x1b[0m'
-    if tile == Cell.BOOS_17:
+    if tile == Cell.HOT_GAME:
         return '\x1b[1;36;40m' + tile + '\x1b[0m'
 
 
