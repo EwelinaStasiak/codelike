@@ -53,51 +53,21 @@ def import_map_from_file(filename):
 
 def color_tile(tile):
     if tile == Cell.PLAYER:
-        return '\x1b[1;33;40m' + tile + '\x1b[0m'
-    if tile == Cell.RAGING_NERD:
+        return '\x1b[1;32;40m' + tile + '\x1b[0m'
+    elif tile == Cell.RAGING_NERD:
         return '\x1b[1;31;40m' + tile + '\x1b[0m'
-    if tile == Cell.SYSOP:
+    elif tile == Cell.SYSOP:
         return '\x1b[1;31;40m' + tile + '\x1b[0m'
-    if tile == Cell.EMPTY:
+    elif tile == Cell.EMPTY:
         return '\x1b[0;35;40m' + tile + '\x1b[0m'
-    if tile == Cell.WALL:
+    elif tile == Cell.WALL:
         return '\x1b[0;34;40m' + tile + '\x1b[0m'
-    if tile == Cell.STAIRS:
+    elif tile == Cell.STAIRS:
         return '\x1b[0;36;40m' + tile + '\x1b[0m'
-    if tile == Cell.BOSS_1:
-        return '\x1b[1;33;40m' + tile + '\x1b[0m'
-    if tile == Cell.BOSS_2:
-        return '\x1b[1;33;40m' + tile + '\x1b[0m'
-    if tile == Cell.BOSS_3:
-        return '\x1b[1;33;40m' + tile + '\x1b[0m'
-    if tile == Cell.BOSS_4:
-        return '\x1b[1;33;40m' + tile + '\x1b[0m'
-    if tile == Cell.BOSS_5:
-        return '\x1b[1;33;40m' + tile + '\x1b[0m'
-    if tile == Cell.BOSS_6:
-        return '\x1b[1;33;40m' + tile + '\x1b[0m'
-    if tile == Cell.BOSS_7:
-        return '\x1b[1;33;40m' + tile + '\x1b[0m'
-    if tile == Cell.BOSS_8:
-        return '\x1b[1;33;40m' + tile + '\x1b[0m'
-    if tile == Cell.BOSS_9:
-        return '\x1b[1;33;40m' + tile + '\x1b[0m'
-    if tile == Cell.BOSS_10:
-        return '\x1b[1;32;40m' + tile + '\x1b[0m'
-    if tile == Cell.BOSS_11:
-        return '\x1b[1;32;40m' + tile + '\x1b[0m'
-    if tile == Cell.BOSS_12:
-        return '\x1b[1;32;40m' + tile + '\x1b[0m'
-    if tile == Cell.BOSS_13:
-        return '\x1b[1;32;40m' + tile + '\x1b[0m'
-    if tile == Cell.BOSS_14:
-        return '\x1b[1;32;40m' + tile + '\x1b[0m'
-    if tile == Cell.BOSS_15:
-        return '\x1b[1;32;40m' + tile + '\x1b[0m'
-    if tile == Cell.BOSS_16:
-        return '\x1b[1;32;40m' + tile + '\x1b[0m'
-    if tile == Cell.HOT_GAME:
+    elif tile == Cell.HOT_GAME:
         return '\x1b[1;36;40m' + tile + '\x1b[0m'
+    else:
+        return '\x1b[1;33;40m' + tile + '\x1b[0m'
 
 
 def print_map(game_map):
