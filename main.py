@@ -1,11 +1,11 @@
 import os
-import time
 from game_map import import_map_from_file as create_map
 from game_map import print_map
 from game_map import search_for_player
 from player import action_of_player, Player, check_input
 from monster import create_monsters, move_monsters, monsters_attack
 from screens import open_and_print_file
+from fight import end_game
 
 
 def getch():
@@ -105,7 +105,7 @@ def help_screen():
 
 
 def lose_screen():
-    open_and_print_file('lose_screen.txt')
+    print(open_and_print_file('lose_screen.txt'))
 
 
 def win_screen():
