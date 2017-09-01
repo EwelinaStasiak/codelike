@@ -11,6 +11,6 @@
 *                                                *
 *        Play - Press P  Exit - Press E          *
 *        Help - Press H  Leaderboard - Press L   *
-*                                                *
+*        About - Press A                         *
 *                                                *
 **************************************************

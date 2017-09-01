@@ -129,6 +129,11 @@ def exit_game():
     exit()
 
 
+def about_screen():
+    os.system('cls' if os.name == 'nt' else 'clear')
+    input('This game was created by Jacek and Ewelina. Hope you will enjoy it !!\n\nHit anything to exit')
+
+
 def start_screen(player_location):
     while True:
         os.system('cls' if os.name == 'nt' else 'clear')
@@ -144,8 +149,10 @@ def start_screen(player_location):
             help_screen()
         elif decision == 'e':
             exit_game()
+        elif decision == 'a':
+            about_screen()
         else:
-            print('You can type only P, H, L or E !')
+            print('You can type only P, H, L, A or E !')
 
 
 if __name__ == '__main__':
