@@ -56,8 +56,14 @@ def destroy_item(player, messages):
 
 
 def use_item(player):
-    # trzeba dodać żeby dało się tylko wpisac numer
-    number_item = int(input('Press number item which you want to use:\n'))
+    number_item = input('Press which item you want to use:\n')
+    if number_item.isdigit():
+        if int(number_item) <= len(player.inventory):
+            number_item = int(number_item)
+        else:
+            return
+    else:
+        return
     if isinstance(player.inventory[number_item - 1], Food):
         player.health += player.inventory[number_item - 1].heal_amount
         player.inventory.remove(player.inventory[number_item - 1])
